@@ -8,16 +8,18 @@
     <input type='text' name='firstName'/> <br><br>
     <input type='submit' value='submit'/>
     </form>";
-
-  $firstName = $_POST['firstName'];
-  if (preg_match('/^[a-zA-Z]+$/', $firstName)) {
-    echo 'Name is valid';
-    echo '<br><br>';
-  } else { 
-    echo 'No numbers and extra character allowed Enter valid name like Dhara';
-    echo '<br><br>';
+  if(isset($_POST['firstName'])) {
+    $firstName = $_POST['firstName'];
+    if (preg_match('/^[a-zA-Z]+$/', $firstName)) {
+      echo 'Name is valid';
+      echo '<br><br>';
+    } else { 
+      echo 'No numbers and extra character allowed Enter valid name like Dhara';
+      echo '<br><br>';
   }
 
+  }
+  
   /* preg_quote */
   echo '<strong>---------------- Example of preg_quote ----------------</strong>';
   echo '<br>';
