@@ -1,7 +1,6 @@
 <!-- Pattern 7-->
 
 <?php 
-
   if(isset($_POST['numberOfRows'])) {
     $forStar = 1;
     $forZero = 1;
@@ -13,8 +12,7 @@
       $forZero++;
       echo '<br><br>';
     }
-  }
-    
+  }  
 ?>
 <form method="POST">
   Enter Number Of Rows:
