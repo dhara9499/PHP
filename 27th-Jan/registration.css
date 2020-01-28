@@ -1,0 +1,43 @@
+html,body {
+  width:90%;
+  height:100%;
+}
+
+fieldset {
+  border: 3px dashed green;
+  margin-top: 2%;
+}
+
+label {
+  color: blue;
+  font-weight: bold;
+}
+
+legend{
+  color: orangered;
+  font-weight: bolder; 
+}
+.mainOuterDivision {
+  width: 70%;
+  height: 7%;
+  display: inline-block;
+  margin-top: 1%;
+}
+
+.mainOuterDivisionForTextarea {
+  height: 20%;
+  display: inline-block;
+}
+.labelOuterDivision {
+  float: left;
+}
+.inputField {
+  width:40%;
+  float: right;
+  border: 1px solid blue;
+  border-radius: 5px;  
+}
+
+.radioButtonDivision {
+  width:100%;
+}
