@@ -7,6 +7,8 @@
             header("location: blogPostDesign.php");            
         }
         
+    } else {
+        header("location: loginDesign.php");
     }
 
     function getParentCategoryName() {
