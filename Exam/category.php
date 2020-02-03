@@ -12,6 +12,14 @@
                     <body>
                         <div>
                             <table border="1">';
+
+           echo '<tr>
+                    <th>CategoryId</th>
+                    <th>CategoryName</th>
+                    <th>Parent Category Name</th>
+                    <th>Created Date</th>
+                    <th colspan="2"> Actions</th>
+                    </tr>';           
             if($result = mysqli_query($connectionObject, $selectQuery)) {
                 if(mysqli_num_rows($result) > 0) { 
                     foreach($result as $row => $column) {   
@@ -19,7 +27,7 @@
                             echo '<td>'.$value.'</td>'; 
                         } 
                         echo "<td><a href='#'>Update</a></td>";
-                        echo "<td><a href='#'>Delete</a></td>";
+                        echo "<td><a href='?delete=".$column['categoryId']. "'>Delete</a></td>";
                         echo "</tr>";
                     }
                 
@@ -32,13 +40,30 @@
             header("location: addCategoryDesign.php");
         }
 
+        if(isset($_POST['btnMyProfile'])) {
+            header("location: myProfile.php");
+        }
+
         if(isset($_POST['btnLogout'])) {
             session_destroy();
             header("location: loginDesign.php");
         }
         
-        if(isset($_POST['btnMyProfile'])) {
-            header("location: profile.php");
+      
+    
+        function deleteRowData($categoryId) { //delete function
+            global $connectionObject;
+            $deleteQuery = "DELETE FROM category where categoryId = ".$categoryId;
+            $result_delete = mysqli_query($connectionObject, $deleteQuery);
+            if ($result_delete) {
+                echo '<script>alert(\'Row deleted successfully\');</script>';
+            } else {
+                echo '<script>alert(\'Row deleted successfully\');</script>';
+            } 
+        }
+
+        if(isset($_REQUEST['delete'])) { //execution of delete function
+            deleteRowData($_REQUEST['delete']);
         }
        
     }
