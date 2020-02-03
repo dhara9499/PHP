@@ -43,6 +43,8 @@
             header("location: profile.php");
         }
        
+    } else {
+        header("location: loginDesign.php");
     }
     
 
