@@ -7,7 +7,7 @@
             echo '<script>alert("Login successfully done."); </script>';
             $_SESSION['userName'] = getUserName('userTable', $_POST['emailId']); 
             $_SESSION['userId'] = getUserId('userTable', $_POST['emailId']);           
-            header("location: blogPostDesign.php");
+            header("location: categoryDesign.php");
         } else {
             echo '<script>alert("Please enter valid emailId and password"); </script>';
         } 
