@@ -17,7 +17,10 @@
             
             <?php 
                 if(isset($_SESSION['userName'])) 
-                    displayTable("SELECT categoryId, metaTitle, createdAt FROM category"); ?> 
+                    displayTable("SELECT category.categoryId, category.title,         parentCategory.title as parentcategoryname, category.createdAt 
+                    FROM category 
+                    INNER JOIN parentcategory  
+                    ON category.parentCategoryId = parentcategory.parentCategoryId"); ?> 
             <br><br><br>
             
             <input type="submit" name="btnMyProfile" value="My Profile">
