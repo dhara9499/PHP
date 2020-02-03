@@ -32,6 +32,7 @@
         $keys = implode(', ', $keys);
         $values = implode("', '", $values);
         $insertedQuery = "INSERT INTO $tableName($keys) VALUES('$values')";
+        echo $insertedQuery;
         $insertedResult = mysqli_query($connectionObject, $insertedQuery);
     }
 
