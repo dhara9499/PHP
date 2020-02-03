@@ -5,17 +5,21 @@
     if(isset($_SESSION['userName'])) {
         if(isset($_POST['btnUpdate'])) {
             updateRowData('userTable', $_SESSION['userId'], $_POST['registration']);
+            header("location: categoryDesign.php");
         }
+    } else {
+        header("location: loginDesign.php");
     }
     
-    function updateRowData($tableName, $customer_id, $arrayData) { //
+    function updateRowData($tableName, $userId, $arrayData) { //
         global $connectionObject;
         $updateData = '';
         foreach($arrayData as $key => $value) {
             $updateData .= ", $key = '$value'";
             $updateData = ltrim($updateData, ', ');  
         }
-        $updateQuery = "UPDATE $tableName SET $updateData WHERE customer_id=".$customer_id;
+        $updateQuery = "UPDATE $tableName SET $updateData WHERE userId=".$userId;
+        mysqli_query($connectionObject, $updateQuery);
         return mysqli_affected_rows($connectionObject);
     }
 
