@@ -1,0 +1,6 @@
+array_combine:
+combine two array
+array1 = [0, 1, 2];
+array2 = [3, 4, 5];
+
+after array_combine : [0, 1, 2, 3, 4, 5];
