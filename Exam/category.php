@@ -26,7 +26,7 @@
                         foreach($column as $value) {
                             echo '<td>'.$value.'</td>'; 
                         } 
-                        echo "<td><a href='#'>Update</a></td>";
+                        echo "<td><a href='updateCategoryDesign.php?update=".$column['categoryId']."'>Update</a></td>";
                         echo "<td><a href='?delete=".$column['categoryId']. "'>Delete</a></td>";
                         echo "</tr>";
                     }
@@ -41,7 +41,7 @@
         }
 
         if(isset($_POST['btnMyProfile'])) {
-            header("location: myProfile.php");
+            header("location: myProfileDesign.php");
         }
 
         if(isset($_POST['btnLogout'])) {
@@ -49,8 +49,6 @@
             header("location: loginDesign.php");
         }
         
-      
-    
         function deleteRowData($categoryId) { //delete function
             global $connectionObject;
             $deleteQuery = "DELETE FROM category where categoryId = ".$categoryId;
@@ -65,7 +63,26 @@
         if(isset($_REQUEST['delete'])) { //execution of delete function
             deleteRowData($_REQUEST['delete']);
         }
+
+        function updateRowData($tableName, $userId, $arrayData) { //
+            global $connectionObject;
+            $updateData = '';
+            foreach($arrayData as $key => $value) {
+                $updateData .= ", $key = '$value'";
+                $updateData = ltrim($updateData, ', ');  
+            }
+            $updateQuery = "UPDATE $tableName SET $updateData WHERE userId=".$userId;
+            echo $updateQuery;
+            //return mysqli_affected_rows($connectionObject);
+        }
+    
+
+        if(isset($_REQUEST['update'])) {
+            updateRowData('category', $_SESSION['userId'], $_POST['category']);
+        }
        
+    } else {
+        header("location: loginDesign.php");
     }
 
 ?>
