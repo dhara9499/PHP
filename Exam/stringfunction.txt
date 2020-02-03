@@ -1,0 +1,8 @@
+string position :
+
+return the position of sub string for first occurrance
+
+example: $string1 = 'Hello Dhara';
+
+ strpos($string1, 'l');
+output: 2
