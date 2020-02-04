@@ -3,8 +3,13 @@
     include_once 'connection.php';
     if(isset($_SESSION['userName'])) {
         if(isset($_POST['btnAddNewCategory'])) {
-            insertFunction('blogpost', $_POST['blog']);
-            header("location: blogPostDesign.php");            
+            $_POST['blog']['userId'] = $_SESSION['userId'];         
+            $postId = insertFunction('blogpost', $_POST['blog']);
+            $blogPostArray = preparePostCategoryData($_POST['categoryId'], $postId); 
+            foreach ($blogPostArray as $postCategory) {
+                insertFunction('post_category', $postCategory);
+            }
+            header("location: blogPostDesign.php");          
         }
         
     } else {
@@ -24,17 +29,26 @@
         return $categoryName;
     }
 
+    function preparePostCategoryData($parentCategoryId, $postId) {
+        $postArray = [];
+        $postCategoryArray = [];
+        foreach($parentCategoryId as $categoryId) {
+            $postCategoryArray['postId'] = $postId;
+            $postCategoryArray['parentCategoryId'] = $categoryId;
+            array_push($postArray, $postCategoryArray);
+        }
+        return $postArray;
+    }
+
     function insertFunction($tableName, $insertedValue) {
         global $connectionObject;
-        $currentDate = date('Y-m-d');
-        $keys = array_keys($insertedValue);
-        $values = array_values($insertedValue);
-        array_push($keys, 'userId');
-        array_push($values, $_SESSION['userId']); 
-        $keys = implode(', ', $keys);
-        $values = implode("', '", $values);
+        $keys = implode(', ', array_keys($insertedValue));
+        $values = implode("', '", array_values($insertedValue));
         $insertedQuery = "INSERT INTO $tableName($keys) VALUES('$values')";
+
         $insertedResult = mysqli_query($connectionObject, $insertedQuery);
+        $postId = mysqli_insert_id($connectionObject);
+        return $postId;
     }
 
 ?>
