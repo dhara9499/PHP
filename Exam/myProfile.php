@@ -4,6 +4,7 @@
 
     if(isset($_SESSION['userName'])) {
         if(isset($_POST['btnUpdate'])) {
+            $_SESSION['userName'] = $_POST['registration']['firstName'];
             updateRowData('userTable', $_SESSION['userId'], $_POST['registration']);
             header("location: categoryDesign.php");
         }
