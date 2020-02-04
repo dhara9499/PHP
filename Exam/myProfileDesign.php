@@ -57,24 +57,6 @@
                         : 'Enter valid Email-Id eg:abc@gmail.com';?> 
             </span><br><br>
 
-            <label for="registration[userPassword]">Password</label>
-            <input type="password" name="registration[userPassword]" value="<?php echo $registrationArray['userPassword'];?>" required/>
-            <span> 
-                <?php if(isset($_POST['registration']['userPassword'])) 
-                        echo validation('password', $_POST['registration']['userPassword']) 
-                        ? '' 
-                        : 'Enter valid password eg:dhara123';?>
-            </span><br><br>
-
-            <label for="confirmPassword">Confirm Password</label>
-            <input type="password" name="confirmPassword" value="<?php echo $registrationArray['userPassword'];?>" required/>
-            <span>
-                <?php if(isset($_POST['confirmPassword'])) 
-                        echo checkPassword($_POST['registration']['userPassword'], $_POST['confirmPassword']) 
-                        ? '' 
-                        : 'Please enter password you entered above';?>
-            </span><br><br>
-
             <label for="registration[information]"> Information </label>
             <textarea name="registration[information]" required><?php echo $registrationArray['information']?></textarea>
             <br><br>
