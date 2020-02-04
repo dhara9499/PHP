@@ -29,6 +29,7 @@
             if(checkEmailExistOrNot('userTable')) {
                 echo '<script> alert("Email address already exists ");</script>';
             } else { 
+                $_POST['registration']['userPassword'] = md5($_POST['registration']['userPassword']);
                 insertFunction('userTable', $_POST['registration']);
                 header ('location:loginDesign.php');
             }
