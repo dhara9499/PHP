@@ -11,7 +11,7 @@
             <h2> Blog Posts </h2><br><br>
 
             <input type="submit" name="btnAddBlogPost" value="Add Blog Post"><br><br>
-            <?php if(isset($_SESSION['userName'])) displayTable("SELECT postId, title, publishedAt FROM blogpost"); ?> <br><br><br>
+            <?php if(isset($_SESSION['userName'])) displayTable("SELECT postId, title, publishedAt FROM blogpost WHERE userId=".$_SESSION['userId']); ?> <br><br><br>
             <input type="submit" name="btnManageCategory" value="ManageCategary">
             <input type="submit" name="btnMyProfile" value="My Profile">
             <input type="submit" name="btnLogout" value="Logout"><br><br>
