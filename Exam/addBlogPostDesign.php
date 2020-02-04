@@ -25,7 +25,7 @@
         
             <label for="blog[categoryId]">Parent Categary</label>
             
-            <select name="blog[categoryId]" multiple> 
+            <select name="categoryId[]" multiple> 
             <?php $categoryName = getParentCategoryName();?>
             <?php for($cnt = 0; $cnt < sizeof($categoryName); $cnt++) : ?>
             <option value="<?php echo ($cnt + 1) ?>"><?php echo $categoryName[$cnt]; ?></option> 
