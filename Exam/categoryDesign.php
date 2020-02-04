@@ -17,12 +17,12 @@
             
             <?php 
                 if(isset($_SESSION['userName'])) 
-                    displayTable("SELECT category.categoryId, category.title,         parentCategory.title as parentcategoryname, category.createdAt 
+                    displayTable("SELECT category.categoryId, category.title,parentCategory.title as parentcategoryname, category.createdAt, category.image
                     FROM category 
                     INNER JOIN parentcategory  
                     ON category.parentCategoryId = parentcategory.parentCategoryId"); ?> 
             <br><br><br>
-            
+            <input type="submit" name="btnBlogPost" value="Blog Post">
             <input type="submit" name="btnMyProfile" value="My Profile">
             <input type="submit" name="btnLogout" value="Logout"><br><br>
         </form>
