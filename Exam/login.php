@@ -7,7 +7,7 @@
             echo '<script>alert("Login successfully done."); </script>';
             $_SESSION['userName'] = getUserName('userTable', $_POST['emailId']); 
             $_SESSION['userId'] = getUserId('userTable', $_POST['emailId']);           
-            header("location: categoryDesign.php");
+            header("location: blogPostDesign.php");
         } else {
             echo '<script>alert("Please enter valid emailId and password"); </script>';
         } 
@@ -19,7 +19,7 @@
 
     function checkUserExistOrNot($tableName, $email, $userPassword) {
         global $connectionObject;
-        $checkQuery = "SELECT email,userPassword FROM $tableName WHERE email ='" .$email. "'AND userPassword ='" .$userPassword. "'";
+        $checkQuery = "SELECT email,userPassword FROM $tableName WHERE email ='" .$email. "'AND userPassword ='" .md5($userPassword). "'";
         return 
             mysqli_num_rows(mysqli_query($connectionObject, $checkQuery))
             ? true
