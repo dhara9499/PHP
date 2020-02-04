@@ -6,7 +6,7 @@
     </head>
     <?php include_once 'addCategory.php';?>
     <body>
-        <form method="POST">
+        <form method="POST" enctype="multipart/form-data">
             <label for="category[title]">Title</label>
             <input type="text" name="category[title]" required/><br><br>
 
@@ -20,8 +20,8 @@
             <input type="text" name="category[metaTitle]" required/><br><br>
 
         
-            <label for="category[image]">Image</label>
-            <input type="file" name="category[image]" required/><br><br>
+            <label for="image">Image</label>
+            <input type="file" name="image" required/><br><br>
         
             <label for="category[parentCategory]">Parent Categary</label>
             <input list="parentCategory" name="category[parentCategoryId]"/><br><br>
