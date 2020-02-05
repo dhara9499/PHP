@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 03, 2020 at 05:44 PM
+-- Generation Time: Feb 05, 2020 at 09:36 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.2.26
 
@@ -35,7 +35,6 @@ CREATE TABLE `blogpost` (
   `url` varchar(100) NOT NULL,
   `publishedAt` date DEFAULT NULL,
   `image` blob NOT NULL,
-  `categoryId` int(6) DEFAULT NULL,
   `userId` int(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -43,10 +42,8 @@ CREATE TABLE `blogpost` (
 -- Dumping data for table `blogpost`
 --
 
-INSERT INTO `blogpost` (`postId`, `title`, `content`, `url`, `publishedAt`, `image`, `categoryId`, `userId`) VALUES
-(1, 'how to become a good learner?', 'video practice, meditation', 'goodlearner101.in', '2020-02-12', 0x626c612e6a7067, 3, 1),
-(2, 'how to become a good learner?', 'video practice, meditation', 'goodlearner101.in', '2020-02-12', 0x626c612e6a7067, 3, 1),
-(3, 'how to become a good learner?', 'video practice, meditation', 'goodlearner101.in', '2020-02-12', 0x626c612e6a7067, 3, 1);
+INSERT INTO `blogpost` (`postId`, `title`, `content`, `url`, `publishedAt`, `image`, `userId`) VALUES
+(1, 'How to become a good learner', 'Video practice', 'goodlearner.txt', '2020-02-13', 0x626c612e6a7067, 1);
 
 -- --------------------------------------------------------
 
@@ -61,7 +58,7 @@ CREATE TABLE `category` (
   `url` varchar(200) NOT NULL,
   `metaTitle` varchar(100) NOT NULL,
   `parentCategoryId` int(6) NOT NULL,
-  `image` blob DEFAULT NULL,
+  `image` varchar(250) DEFAULT NULL,
   `createdAt` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -70,7 +67,7 @@ CREATE TABLE `category` (
 --
 
 INSERT INTO `category` (`categoryId`, `title`, `content`, `url`, `metaTitle`, `parentCategoryId`, `image`, `createdAt`) VALUES
-(3, 'Education', 'learn about any subject, books', 'education.php', 'learn new things', 1, 0x67617264692e6a7067, '2020-02-03');
+(1, 'Maths', 'maths logical field', 'mathslogics.php', 'Education practice', 1, 'ic_math-web.png', '2020-02-04');
 
 -- --------------------------------------------------------
 
@@ -91,6 +88,26 @@ INSERT INTO `parentcategory` (`parentCategoryId`, `title`) VALUES
 (1, 'Education'),
 (2, 'Electronics'),
 (3, 'Health');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `post_category`
+--
+
+CREATE TABLE `post_category` (
+  `postCatId` int(11) NOT NULL,
+  `postId` int(6) NOT NULL,
+  `parentCategoryId` int(6) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `post_category`
+--
+
+INSERT INTO `post_category` (`postCatId`, `postId`, `parentCategoryId`) VALUES
+(10, 1, 1),
+(11, 1, 3);
 
 -- --------------------------------------------------------
 
@@ -117,8 +134,7 @@ CREATE TABLE `usertable` (
 --
 
 INSERT INTO `usertable` (`userId`, `prefix`, `firstName`, `lastName`, `mobile`, `email`, `userPassword`, `information`, `lastLoginAt`, `createdAt`, `updatedAt`) VALUES
-(1, 'Miss', 'Dhara', 'Parekh', '9824588991', 'abc@gmail.com', '123456789', 'I am dhara', '2020-02-03', '2020-02-03', '2020-02-03'),
-(2, 'Miss', 'Dolly', 'Parekh', '6352301038', 'dollyjamnagar@gmail.com', 'dolly123', 'I am a physics teacher  ', '2020-02-03', '2020-02-03', '2020-02-03');
+(1, 'Miss', 'Dhara', 'Parekh', '9824588991', 'd.j.parekh99@gmail.com', 'f53f6a95dfc35753bff7d00d1f37c98e', 'I am Dhara', '2020-02-04', '2020-02-04', '2020-02-04');
 
 --
 -- Indexes for dumped tables
@@ -129,21 +145,28 @@ INSERT INTO `usertable` (`userId`, `prefix`, `firstName`, `lastName`, `mobile`, 
 --
 ALTER TABLE `blogpost`
   ADD PRIMARY KEY (`postId`),
-  ADD KEY `categoryId` (`categoryId`),
-  ADD KEY `userId` (`userId`);
+  ADD KEY `blogpost_ibfk_2` (`userId`);
 
 --
 -- Indexes for table `category`
 --
 ALTER TABLE `category`
   ADD PRIMARY KEY (`categoryId`),
-  ADD KEY `parentCategoryId` (`parentCategoryId`);
+  ADD KEY `category_ibfk_1` (`parentCategoryId`);
 
 --
 -- Indexes for table `parentcategory`
 --
 ALTER TABLE `parentcategory`
   ADD PRIMARY KEY (`parentCategoryId`);
+
+--
+-- Indexes for table `post_category`
+--
+ALTER TABLE `post_category`
+  ADD PRIMARY KEY (`postCatId`),
+  ADD KEY `parentCategoryId` (`parentCategoryId`),
+  ADD KEY `post_category_ibfk_1` (`postId`);
 
 --
 -- Indexes for table `usertable`
@@ -160,13 +183,13 @@ ALTER TABLE `usertable`
 -- AUTO_INCREMENT for table `blogpost`
 --
 ALTER TABLE `blogpost`
-  MODIFY `postId` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `postId` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `categoryId` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `categoryId` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `parentcategory`
@@ -175,10 +198,16 @@ ALTER TABLE `parentcategory`
   MODIFY `parentCategoryId` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT for table `post_category`
+--
+ALTER TABLE `post_category`
+  MODIFY `postCatId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
 -- AUTO_INCREMENT for table `usertable`
 --
 ALTER TABLE `usertable`
-  MODIFY `userId` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `userId` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Constraints for dumped tables
@@ -188,14 +217,20 @@ ALTER TABLE `usertable`
 -- Constraints for table `blogpost`
 --
 ALTER TABLE `blogpost`
-  ADD CONSTRAINT `blogpost_ibfk_1` FOREIGN KEY (`categoryId`) REFERENCES `category` (`categoryId`),
-  ADD CONSTRAINT `blogpost_ibfk_2` FOREIGN KEY (`userId`) REFERENCES `usertable` (`userId`);
+  ADD CONSTRAINT `blogpost_ibfk_2` FOREIGN KEY (`userId`) REFERENCES `usertable` (`userId`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `category`
 --
 ALTER TABLE `category`
-  ADD CONSTRAINT `category_ibfk_1` FOREIGN KEY (`parentCategoryId`) REFERENCES `parentcategory` (`parentCategoryId`);
+  ADD CONSTRAINT `category_ibfk_1` FOREIGN KEY (`parentCategoryId`) REFERENCES `parentcategory` (`parentCategoryId`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `post_category`
+--
+ALTER TABLE `post_category`
+  ADD CONSTRAINT `post_category_ibfk_1` FOREIGN KEY (`postId`) REFERENCES `blogpost` (`postId`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `post_category_ibfk_2` FOREIGN KEY (`parentCategoryId`) REFERENCES `parentcategory` (`parentCategoryId`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
