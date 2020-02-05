@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 05, 2020 at 09:36 AM
+-- Generation Time: Feb 05, 2020 at 09:46 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.2.26
 
@@ -34,7 +34,7 @@ CREATE TABLE `blogpost` (
   `content` varchar(100) NOT NULL,
   `url` varchar(100) NOT NULL,
   `publishedAt` date DEFAULT NULL,
-  `image` blob NOT NULL,
+  `image` varchar(250) NOT NULL,
   `userId` int(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -43,7 +43,7 @@ CREATE TABLE `blogpost` (
 --
 
 INSERT INTO `blogpost` (`postId`, `title`, `content`, `url`, `publishedAt`, `image`, `userId`) VALUES
-(1, 'How to become a good learner', 'Video practice', 'goodlearner.txt', '2020-02-13', 0x626c612e6a7067, 1);
+(1, 'How to become a good learner', 'Video practice', 'goodlearner.txt', '2020-02-13', 'bla.jpg', 1);
 
 -- --------------------------------------------------------
 
