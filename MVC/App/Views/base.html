@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %} {% endblock %}</title>
+    </head>
+    <body>
+        <nav>
+            <a href="/MVC/public/">Home</a>
+            <a href="/MVC/public/posts/index">Posts</a>
+        </nav>
+
+        {% block body %}
+        {% endblock %}
+    </body>
+</html>

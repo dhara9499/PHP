@@ -6,6 +6,7 @@
             $_POST['blog']['userId'] = $_SESSION['userId'];         
             $postId = insertFunction('blogpost', $_POST['blog']);
             $blogPostArray = preparePostCategoryData($_POST['categoryId'], $postId); 
+            
             foreach ($blogPostArray as $postCategory) {
                 insertFunction('post_category', $postCategory);
             }
