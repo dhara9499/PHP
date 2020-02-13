@@ -38,6 +38,11 @@ class Home extends \Core\Controller
                 'colours' => ['red', 'green', 'pink'],
             ]);
     }
+
+    public function abcAction()
+    {
+        View::renderTemplate('Home/abc.html');
+    }
 }
 
 ?> 

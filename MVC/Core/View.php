@@ -25,7 +25,6 @@ class View
             $loader = new \Twig\Loader\FilesystemLoader('../App/Views');
             $twig = new \Twig\Environment($loader);
         }
-
         echo $twig->render($template, $args);
     }
 }

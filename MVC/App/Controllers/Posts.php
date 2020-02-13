@@ -1,7 +1,8 @@
 <?php
 
-namespace App\controllers;
+namespace App\Controllers;
 
+use App\Models\Post;
 use Core\View;
 
 require '../Core/Controller.php';
@@ -26,7 +27,8 @@ require '../Core/Controller.php';
 
         public function indexAction()
         {
-            View::renderTemplate('Posts/index.html');
+            $posts = Post::getAll();
+            View::renderTemplate('Posts/index.html', ['posts' => $posts]);
         }
 
         public function addNewAction()
