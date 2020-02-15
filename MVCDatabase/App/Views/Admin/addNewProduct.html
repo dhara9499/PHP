@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block title %} Add New Category {% endblock %}
+
+{% block body %}
+    <form method="POST" action="/admin/Products/addProduct">
+        <div>
+            <label for="product[productName]">Product Name:</label>
+            <input type="text" name="product[productName]"/>
+        </div>
+    
+        <div>
+            <label for="product[SKU]">SKU:</label>
+            <input type="text" name="product[SKU]"/>
+        </div>
+    
+        <div>
+            <label for="product[urlKey]">Url key:</label>
+            <input type="text" name="product[urlKey]"/>
+        </div>
+    
+        <div>
+            <label for="product[productImage]">Product Image:</label>
+            <input type="file" name="product[productImage]"/>
+        </div>
+    
+        <div>
+            <label for="product[productStatus]">Product Status:</label>
+            <input type="text" name="product[productStatus]"/>
+        </div>
+    
+        <div>
+            <label for="product[productDescription]">Product Description:</label>
+            <input type="text" name="product[productDescription]"/>
+        </div>
+    
+        <div>
+            <label for="product[shortDescription]">Short Description:</label>
+            <input type="text" name="product[shortDescription]"/>
+        </div>
+    
+        <div>
+            <label for="product[productStock]">Product Stock:</label>
+            <input type="text" name="product[productStock]"/>
+        </div>
+    
+        <div>
+            <label for="product[productPrice]">Product Price:</label>
+            <input type="text" name="product[productPrice]"/>
+        </div>
+    
+        <div>
+            <input type="submit" value="Add Product" name="btnAddNewProduct"/>
+        </div>
+    </form>
+{% endblock %}

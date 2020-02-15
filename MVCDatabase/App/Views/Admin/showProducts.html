@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %} Show Products {% endblock %}
+
+{% block body %}
+    <button><a href="products/add">Add Products</a></button>
+    <table border="1">
+        {% for product, item in products %}
+        <tr>
+            <td>{{ item.productName }}</td>
+            <td>{{ item.SKU }}</td>
+            <td>{{ item.urlKey }}</td>
+            <td>{{ item.productImage }}</td>
+            <td>{{ item.productStatus }}</td>
+            <td>{{ item.productDescription }}</td>
+            <td>{{ item.shortDescription }}</td>
+            <td>{{ item.productStock }}</td>
+            <td>{{ item.productPrice }}</td>
+            <td>{{ item.createdAt }}</td>
+            <td><a href= "/Admin/products/edit/{{ item.productID }}">Edit</a></td>
+            <td><a href= "/Admin/products/delete?productID={{ item.productID }}">Delete</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

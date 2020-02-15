@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %} Update Category {% endblock %}
+{% block body %}
+    <form method="POST" action="/Admin/Categories/editCategoryData">
+        <div>
+            <label for="category[categoryName]">Category Name:</label>
+            <input type="text" name="category[categoryName]" value="{{ category.categoryName }}"/>
+        </div>
+    
+        <div>
+            <label for="category[urlKey]">Url Key:</label>
+            <input type="text" name="category[urlKey]" value="{{ category.urlKey }}"/>
+        </div>
+    
+        <div>
+            <label for="category[categoryImage]">Category Image:</label>
+            <input type="file" name="category[categoryImage]" value="{{ category.categoryImage }}"/>
+        </div>
+    
+        <div>
+            <label for="category[categoryStatus]">Category Status:</label>
+            <input type="text" name="category[categoryStatus]" value="{{ category.categoryStatus }}"/>
+        </div>
+    
+        <div>
+            <label for="category[categoryDescription]">Category Description:</label>
+            <input type="text" name="category[categoryDescription]" value="{{ category.categoryDescription}}"/>
+        </div>
+    
+        <div>
+            <label for="category[parentCategoryID]">Parent Category:</label>
+            <select name="category[parentCategoryID]">
+                {% for parentCategory in parentCategories %}
+                    <option value="{{ parentCategory.parentCategoryID }}" 
+                        {% if category.parentCategoryID ==  parentCategory.parentCategoryID %}  
+                                selected
+                        {% endif %}>
+                        {{ parentCategory.parentCategoryName }}
+                    </option>
+                {% endfor %}  
+            </select>
+        </div>
+    
+        <div>
+            <input type="submit" value="Update Category" name="btnUpdateCategory"/>
+        </div>
+    </form>
+{% endblock %}

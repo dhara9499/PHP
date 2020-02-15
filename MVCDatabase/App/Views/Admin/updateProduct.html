@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block title %} Update Product {% endblock %}
+{% block body %}
+    <form method="POST" action="/Admin/Products/editProductData">
+        
+        <div>
+            <label for="product[productName]">Product Name:</label>
+            <input type="text" name="product[productName]" value="{{ product.productName }}"/>
+        </div>
+    
+        <div>
+            <label for="product[SKU]">SKU:</label>
+            <input type="text" name="product[SKU]" value="{{ product.SKU }}"/>
+        </div>
+    
+        <div>
+            <label for="product[urlKey]">Url key:</label>
+            <input type="text" name="product[urlKey]" value="{{ product.urlKey }}"/>
+        </div>
+    
+        <div>
+            <label for="product[productImage]">Product Image:</label>
+            <input type="file" name="product[productImage]" value="{{ product.productImage }}"/>
+        </div>
+    
+        <div>
+            <label for="product[productStatus]">Product Status:</label>
+            <input type="text" name="product[productStatus]" value="{{ product.productStatus }}"/>
+        </div>
+    
+        <div>
+            <label for="product[productDescription]">Product Description:</label>
+            <input type="text" name="product[productDescription]" value="{{ product.productDescription }}"/>
+        </div>
+    
+        <div>
+            <label for="product[shortDescription]">Short Description:</label>
+            <input type="text" name="product[shortDescription]" value="{{ product.shortDescription }}"/>
+        </div>
+    
+        <div>
+            <label for="product[productStock]">Product Stock:</label>
+            <input type="text" name="product[productStock]" value="{{ product.productStock }}"/>
+        </div>
+    
+        <div>
+            <label for="product[productPrice]">Product Price:</label>
+            <input type="text" name="product[productPrice]" value="{{ product.productPrice }}"/>
+        </div>
+    
+        <div>
+            <input type="submit" value="Update Product Details" name="btnUpdateProduct"/>
+        </div>
+    </form>
+{% endblock %}

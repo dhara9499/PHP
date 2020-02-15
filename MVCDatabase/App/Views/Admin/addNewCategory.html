@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block title %} Add New Category {% endblock %}
+{% block body %}
+    <form method="POST" action="/admin/Categories/addCategory" enctype="multipart/form-data">
+        <div>
+            <label for="category[categoryName]">Category Name:</label>
+            <input type="text" name="category[categoryName]"/>
+        </div>
+    
+        <div>
+            <label for="category[urlKey]">Url Key:</label>
+            <input type="text" name="category[urlKey]"/>
+        </div>
+    
+        <div>
+            <label for="category[categoryImage]">Category Image:</label>
+            <input type="file" name="category[categoryImage]"/>
+        </div>
+    
+        <div>
+            <label for="category[categoryStatus]">Category Status:</label>
+            <input type="text" name="category[categoryStatus]"/>
+        </div>
+    
+        <div>
+            <label for="category[categoryDescription]">Category Description:</label>
+            <input type="text" name="category[categoryDescription]"/>
+        </div>
+    
+        <div>
+            <label for="category[parentCategoryID]">Parent Category:</label>
+            <select name="category[parentCategoryID]">
+                {% for parentCategory in parentCategories %}
+                    <option value="{{ parentCategory.parentCategoryID }}">{{ parentCategory.parentCategoryName }}</option>
+                {% endfor %}  
+            </select>
+        </div>
+    
+        <div>
+            <input type="submit" value="Add Category" name="btnAddNewCategory"/>
+        </div>
+    </form>
+{% endblock %}
