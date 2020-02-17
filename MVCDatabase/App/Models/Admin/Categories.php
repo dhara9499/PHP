@@ -8,6 +8,23 @@
         public function insertCategoryData($categoryData) {
             Model::insertData('categories', $categoryData);
         }
+
+        public function getRowDataFromDB($categoryID) {
+            $categoryData = Model::fetchRow('categories', 'categoryID', $categoryID);
+            return $categoryData;
+        }
+
+        public function editCategoryData($categoryData, $categoryID) {
+            Model::updateData('categories', $categoryData, 'categoryID', $categoryID);
+        }
+        public function deleteCategoryData($categoryID) {
+            Model::deleteData('categories', 'categoryID', $categoryID);
+        }
+
+        public function isUniqueUrl($urlKey) {
+            return Model::isUnique('categories', 'urlKey', $urlKey) ? true : false; 
+        }
+
         public function showCategoryData() {
             $db = Model::getDB();
             $stmt = $db->query("SELECT
@@ -25,31 +42,10 @@
             $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
             return $results;
         }
-        public function getDataFromDB() {
-            $productData = Model::fetchAll('products');
-            return $productData;
-        }
-
-        public function getRowDataFromDB($categoryID) {
-            $categoryData = Model::fetchRow('categories', 'categoryID', $categoryID);
-            return $categoryData;
-        }
-
-        public function deleteCategory($categoryID) {
-            Model::deleteData('categories', 'categoryID', $categoryID);
-        }
-
-        public function editCategory($data, $categoryID) {
-            Model::updateData('categories', $data, 'categoryID', $categoryID);
-        }
 
         public function getParentCategoryName() {
             $parentCategoryData = Model::fetchAll('parentCategory');
             return $parentCategoryData;
-        }
-
-        public function isProductUrlKey($urlKey) {
-            return (Model::isUrlExists('categories', 'urlKey', $urlKey)) ? true : false; 
         }
     }
 ?>

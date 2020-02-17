@@ -25,22 +25,32 @@
     
         <div>
             <label for="product[productStatus]">Product Status:</label>
-            <input type="text" name="product[productStatus]"/>
+            <input type="radio" name="product[productStatus]" value="on" checked>On
+            <input type="radio" name="product[productStatus]" value="off">Off
         </div>
     
         <div>
             <label for="product[productDescription]">Product Description:</label>
-            <input type="text" name="product[productDescription]"/>
+            <textarea rows="5" cols="25" name="product[productDescription]"></textarea>
         </div>
     
         <div>
             <label for="product[shortDescription]">Short Description:</label>
-            <input type="text" name="product[shortDescription]"/>
+            <textarea rows="3" cols="25" name="product[shortDescription]"></textarea>
         </div>
     
         <div>
             <label for="product[productStock]">Product Stock:</label>
             <input type="text" name="product[productStock]"/>
+        </div>
+
+        <div>
+            <label for="parentCategoryID">Product Parent Categories:</label>
+            <select name="parentCategoryID[]" multiple>
+                {% for parentCategory in parentCategories %}
+                    <option value="{{ parentCategory.parentCategoryID }}">{{ parentCategory.parentCategoryName }}</option>
+                {% endfor %} 
+            </select>
         </div>
     
         <div>

@@ -19,12 +19,15 @@
     
         <div>
             <label for="category[categoryStatus]">Category Status:</label>
-            <input type="text" name="category[categoryStatus]" value="{{ category.categoryStatus }}"/>
+            <input type="radio" name="category[categoryStatus]" value="on" 
+            {{ category.categoryStatus == 1 ? 'checked' : '' }}>On
+            <input type="radio" name="category[categoryStatus]" value="off"
+            {{ category.categoryStatus == 0 ? 'checked' : '' }}>Off
         </div>
     
         <div>
             <label for="category[categoryDescription]">Category Description:</label>
-            <input type="text" name="category[categoryDescription]" value="{{ category.categoryDescription}}"/>
+            <textarea rows="5" cols="25" name="category[categoryDescription]">{{ category.categoryDescription}}</textarea>
         </div>
     
         <div>
@@ -32,8 +35,7 @@
             <select name="category[parentCategoryID]">
                 {% for parentCategory in parentCategories %}
                     <option value="{{ parentCategory.parentCategoryID }}" 
-                        {% if category.parentCategoryID ==  parentCategory.parentCategoryID %}  
-                                selected
+                        {% if category.parentCategoryID == parentCategory.parentCategoryID %}  selected
                         {% endif %}>
                         {{ parentCategory.parentCategoryName }}
                     </option>

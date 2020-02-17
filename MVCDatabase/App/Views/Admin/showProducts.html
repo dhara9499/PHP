@@ -4,12 +4,23 @@
 {% block body %}
     <button><a href="products/add">Add Products</a></button>
     <table border="1">
+        <tr>
+            <th>Product Name</th>
+            <th>SKU</th>
+            <th>Url Key</th>
+            <th>Product Status</th>
+            <th>Product Description</th>
+            <th>Short Description</th>
+            <th>Product Stock</th>
+            <th>Product Price</th>
+            <th>Created At</th>
+            <th colspan="2">Action</th>
+        </tr>
         {% for product, item in products %}
         <tr>
             <td>{{ item.productName }}</td>
             <td>{{ item.SKU }}</td>
             <td>{{ item.urlKey }}</td>
-            <td>{{ item.productImage }}</td>
             <td>{{ item.productStatus }}</td>
             <td>{{ item.productDescription }}</td>
             <td>{{ item.shortDescription }}</td>

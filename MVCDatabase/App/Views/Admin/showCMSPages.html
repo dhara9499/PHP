@@ -1,6 +1,27 @@
 {% extends "base.html" %}
-{% block title %} Show CMS Pages {% endblock %}
-
+{% block title %} Show Category {% endblock %}
 {% block body %}
     <button><a href="/Admin/cms/pages/add">Add CMS Page</a></button>
+    <table border="1">
+        <tr>
+            <th>Page Title</th>
+            <th>Url Key</th>
+            <th>Page Status</th>
+            <th>Category Description</th>
+            <th>Content</th>
+            <th>Created At</th>
+            <th colspan="2">Action</th>
+        </tr>
+        {% for cmsPage, item in cmsPages %}
+        <tr>
+            <td>{{ item.pageTitle }}</td>
+            <td>{{ item.urlKey }}</td>
+            <td>{{ (item.pageStatus == 1) ? 'On' : 'Off'}}</td>
+            <td>{{ item.Content }}</td>
+            <td>{{ item.createdAt }}</td>
+            <td><a href= "/Admin/CMS/pages/edit/{{ item.pageId }}">Edit</a></td>
+            <td><a href= "/Admin/CMS/pages/delete?pageID={{ item.pageId }}">Delete</a></td>
+        </tr>
+        {% endfor %}
+    </table>
 {% endblock %}

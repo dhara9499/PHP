@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %} Add New CMS Page {% endblock %}
+
+{% block body %}
+    <form method="POST" action="/Admin/cms/pages/addCMS">
+        <div>
+            <label for="CMSPage[pageTitle]">Page Title:</label>
+            <input type="text" name="CMSPage[pageTitle]"/>
+        </div>
+    
+        <div>
+            <label for="CMSPage[urlKey]">Url key:</label>
+            <input type="text" name="CMSPage[urlKey]"/>
+        </div>
+
+        <div>
+            <label for="CMSPage[pageStatus]">Page Status:</label>
+            <input type="radio" name="CMSPage[pageStatus]" value="on" checked>On
+            <input type="radio" name="CMSPage[pageStatus]" value="off">Off
+        </div>
+    
+        <div>
+            <label for="CMSPage[Content]">Content:</label>
+            <textarea rows="5" cols="25" name="CMSPage[Content]"></textarea>
+        </div>
+
+        <div>
+            <input type="submit" value="Add CMS Page" name="btnAddNewCMSPage"/>
+        </div>
+    </form>
+{% endblock %}

@@ -38,11 +38,5 @@
             $categories = categoriesModel::showCategoryData();
             View::renderTemplate('Admin/showCategories.html', ['categories' => $categories]);
         }
-
-
     }
-
-
-
-
 ?>

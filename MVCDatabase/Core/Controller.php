@@ -11,9 +11,10 @@
         public function prepareData($data) {
             foreach($data as $key => $value) {
                 if(is_array($value)) {
-                    $data[$key] = explode(',', $value);
+                    $data[$key] = implode(",", $value);
+                } else {
+                    $data[$key] = $value;
                 }
-                $data[$key] = $value;
             }
             return $data;
         }

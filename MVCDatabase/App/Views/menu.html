@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        {% block body %}
+            {% for menuLabel in menuLabels %}
+                    <button class="dropbtn" ><a href="/{{ menuLabel.urlKey }}">{{ menuLabel.pageTitle }}</a></button>
+            {% endfor %}
+            {% for parentcategory in parnetcatgeories %}
+                {% for parentcategoryName in parentcategory %}
+                <div class="dropdown">
+                    <button class="dropbtn">{{ parentcategoryName.parentCategoryName }}</button>
+                    <div class="dropdown-content">
+                      {% for category in categories %}
+                      <a href="{{ category.urlKey }}">{{ category.categoryName }}</a>
+                      {% endfor %}
+                    </div>
+                </div>
+                {% endfor %}
+            {% endfor %}
+        {% endblock %}        
+    </body>
+</html>

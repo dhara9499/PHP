@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %} Update CMS Page {% endblock %}
+{% block body %}
+    <form method="POST" action="/Admin/CMS/Pages/editCMSPageData">
+        <div>
+            <label for="CMSPage[pageTitle]">Page Title:</label>
+            <input type="text" name="CMSPage[pageTitle]" value="{{ CMSPage.pageTitle }}"/>
+        </div>
+    
+        <div>
+            <label for="CMSPage[urlKey]">Url Key:</label>
+            <input type="text" name="CMSPage[urlKey]" value="{{ CMSPage.urlKey }}"/>
+        </div>
+    
+        <div>
+            <label for="CMSPage[pageStatus]">CMSPage Status:</label>
+            <input type="radio" name="CMSPage[pageStatus]" value="on" 
+            {{ CMSPage.pageStatus == 1 ? 'checked' : '' }}>On
+            <input type="radio" name="CMSPage[pageStatus]" value="off"
+            {{ CMSPage.pageStatus == 0 ? 'checked' : '' }}>Off
+        </div>
+    
+        <div>
+            <label for="CMSPage[Content]">CMS Content:</label>
+            <textarea rows="5" cols="25" name="CMSPage[Content]">{{ CMSPage.Content}}</textarea>
+        </div>
+    
+        <div>
+            <input type="submit" value="Update CMSPage" name="btnUpdateCMSPage"/>
+        </div>
+    </form>
+{% endblock %}
