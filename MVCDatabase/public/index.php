@@ -5,7 +5,7 @@
     $router = new Core\Router();
 
     $router->add('', ['controller' => 'Home', 'action' => 'home', 'urlkey'=> 'home']);
-    $router->add('(urlkey)', ['controller' => 'Home', 'action' => 'home']);
+    $router->add('{urlkey}', ['controller' => 'Home', 'action' => 'home']);
     $router->add('{controller}/{action}');
     $router->add('{controller}/{action}/{id:\d+}');
     $router->add('admin/{controller}/{action}', ['namespace' => 'Admin']);

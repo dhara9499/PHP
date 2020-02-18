@@ -1,8 +1,10 @@
 {% extends "home.html" %}
 {% block body %}
-    <div><img src="/images/Product/{{ productDetail.productImage}}" height="50px" width="50px">
-    {{ productDetail.productName }}
-    {{ productDetail.productPrice }}
-    {{ productDetail.shortDescription }}</div>
-    <br><br><br><br>
+    <div>
+        <img src="/images/Product/{{ productDetail.productImage}}" height="50px" width="50px">
+        {{ productDetail.productName }}
+        {{ productDetail.productPrice }}
+        {{ productDetail.shortDescription }}
+    </div>
+    
 {% endblock %}

@@ -1,11 +1,12 @@
 {% extends "home.html" %}
 {% block body %}
     {% for product in products %}
-    <br><br><br>
+    <div>
         <div><img src="/images/product/{{ product.productImage }}" height="50px" width="50px"></div>
         <div>{{ product.productName }}</div>
         <div><a href="/product/view/{{ product.urlKey }}">{{ product.productName }}</a></div>
         <div>{{ product.productPrice }}</div>
+    </div>
     {% endfor %}
-    <br><br><br><br>
+    
 {% endblock %}
