@@ -22,7 +22,7 @@
         }
 
         public function isUniqueUrl($urlKey) {
-            return Model::isUnique('categories', 'urlKey', $urlKey) ? true : false; 
+            return Model::isUnique('categories', 'urlKey', $urlKey) ? false : true; 
         }
 
         public function showCategoryData() {

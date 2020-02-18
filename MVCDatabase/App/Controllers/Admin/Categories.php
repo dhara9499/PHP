@@ -24,9 +24,10 @@
         public function addCategory() {
             $categoryData = $this->prepareCategoryData($_POST['category']);
             $urlKey = $_POST['category']['urlKey'];
+
             if(($this->getImageData('categoryImage')) && (categoriesModel::isUniqueUrl($urlKey))) {
-                categoriesModel::insertCategoryData(categoryData);
-                    header("location: /Admin/Categories");
+                categoriesModel::insertCategoryData($categoryData);
+                header("location: /Admin/Categories");
             } else {
                 echo '<script>alert(\' url key already exists\');</script>';
                 View::renderTemplate("Admin/addNewCategory.html");

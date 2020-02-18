@@ -30,7 +30,7 @@
         }
 
         public function products() {
-            $products = productsModel::getDataFromDB();
+            $products = productsModel::getDataFromDB('products');
             View::renderTemplate('Admin/showProducts.html', ['products' => $products]);
         }
 

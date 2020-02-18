@@ -23,8 +23,6 @@
             $db = Model::getDB();
             $keys = implode('`, `', array_keys($data));
             $values = implode("', '", array_values($data));
-            echo "INSERT INTO $tableName(`$keys`) VALUES ('$values');";
-            echo '<br>';
             $db->exec("INSERT INTO $tableName(`$keys`) VALUES ('$values');"); 
         }
 
@@ -71,7 +69,7 @@
             $stmt = $db->prepare("SELECT * FROM $tableName WHERE $fieldName = '$fieldValue'");
             $stmt->execute();
             $count = $stmt->rowCount();
-            return $count == 0 ? true : false; 
+            return $count == 1 ? true : false; 
         }
     }
 ?>

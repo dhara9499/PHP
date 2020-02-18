@@ -21,7 +21,7 @@
             <td>{{ item.productName }}</td>
             <td>{{ item.SKU }}</td>
             <td>{{ item.urlKey }}</td>
-            <td>{{ item.productStatus }}</td>
+            <td>{{ (item.productStatus == 1) ? 'On' : 'Off' }}</td>
             <td>{{ item.productDescription }}</td>
             <td>{{ item.shortDescription }}</td>
             <td>{{ item.productStock }}</td>

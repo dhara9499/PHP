@@ -8,7 +8,7 @@
     class Pages extends \Core\Controller {
 
         public function add() {
-            View::renderTemplate("Admin/addNewCMSPage.html");
+            View::renderTemplate("/Admin/addNewCMSPage.html");
         }
 
         public function addCMS() {

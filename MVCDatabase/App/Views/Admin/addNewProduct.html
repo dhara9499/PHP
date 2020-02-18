@@ -1,8 +1,8 @@
 {% extends "base.html" %}
-{% block title %} Add New Category {% endblock %}
+{% block title %} Add New Product {% endblock %}
 
 {% block body %}
-    <form method="POST" action="/admin/Products/addProduct">
+    <form method="POST" action="/admin/Products/addProduct" enctype="multipart/form-data">
         <div>
             <label for="product[productName]">Product Name:</label>
             <input type="text" name="product[productName]"/>
@@ -45,10 +45,10 @@
         </div>
 
         <div>
-            <label for="parentCategoryID">Product Parent Categories:</label>
-            <select name="parentCategoryID[]" multiple>
-                {% for parentCategory in parentCategories %}
-                    <option value="{{ parentCategory.parentCategoryID }}">{{ parentCategory.parentCategoryName }}</option>
+            <label for="categoryID">Product Categories:</label>
+            <select name="categoryID">
+                {% for category in categories %}
+                    <option value="{{ category.categoryID }}">{{ category.categoryName }}</option>
                 {% endfor %} 
             </select>
         </div>

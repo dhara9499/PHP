@@ -17,8 +17,8 @@
         <tr>
             <td>{{ item.categoryName }}</td>
             <td>{{ item.urlKey }}</td>
-            <td><img src="/images/category/{{ item.categoryImage }}" width="50px" height="50px"></img></td>
-            <td>{{ (item.categoryStatus == 1) ? 'On' : 'Off'}}</td>
+            <td><img src="/images/category/{{ item.categoryImage }}" width="70px" height="70px"></img></td>
+            <td>{{ (item.categoryStatus == 1) ? 'On' : 'Off' }}</td>
             <td>{{ item.categoryDescription }}</td>
             <td>{{ item.parentCategoryName }}</td>
             <td><a href= "/Admin/categories/edit/{{ item.categoryID }}">Edit</a></td>

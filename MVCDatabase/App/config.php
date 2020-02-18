@@ -12,4 +12,6 @@ class Config
     const DB_USER = 'root';
 
     const DB_PASSWORD = '';
+
+    const baseUrl = 'localhost/Cybercom/PHP/MVCDatabase/public';
 }

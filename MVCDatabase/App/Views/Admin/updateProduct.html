@@ -26,9 +26,9 @@
         <div>
             <label for="product[productStatus]">Product Status:</label>
             <input type="radio" name="product[productStatus]" value="on" 
-            {{ category.categoryStatus == 1 ? 'checked' : '' }}>On
+            {{ product.productStatus == 1 ? 'checked' : '' }} >On
             <input type="radio" name="product[productStatus]" value="off"
-            {{ category.categoryStatus == 0 ? 'checked' : '' }}>Off
+            {{ product.productStatus == 0 ? 'checked' : '' }}>Off
         </div>
     
         <div>
@@ -38,7 +38,7 @@
     
         <div>
             <label for="product[shortDescription]">Short Description:</label>
-            <textarea rows="3" cols="25" name="product[shortDescription]"> product.shortDescription }}</textarea>
+            <textarea rows="3" cols="25" name="product[shortDescription]">{{ product.shortDescription }}</textarea>
         </div>
     
         <div>

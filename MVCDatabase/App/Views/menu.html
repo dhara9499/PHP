@@ -1,22 +1,29 @@
 <!DOCTYPE html>
 <html>
+    <head>
+        {% block stylesheets %}
+            <link rel="stylesheet" type="text/css" href="/index.css">
+        {% endblock %}
+    </head>
     <body>
+        <header>
+            <h2> MVC Ecommerce site </h2>
+        </header>
         {% block body %}
-            {% for menuLabel in menuLabels %}
-                    <button class="dropbtn" ><a href="/{{ menuLabel.urlKey }}">{{ menuLabel.pageTitle }}</a></button>
-            {% endfor %}
-            {% for parentcategory in parnetcatgeories %}
-                {% for parentcategoryName in parentcategory %}
-                <div class="dropdown">
-                    <button class="dropbtn">{{ parentcategoryName.parentCategoryName }}</button>
-                    <div class="dropdown-content">
-                      {% for category in categories %}
-                      <a href="{{ category.urlKey }}">{{ category.categoryName }}</a>
-                      {% endfor %}
-                    </div>
+        {% for menuLabel in menuLabels %}
+                <button class="dropbtn" ><a href="/{{ menuLabel.urlKey }}">{{ menuLabel.pageTitle }}</a></button>
+        {% endfor %}
+        {% for parentCategory in parentCategories %}
+            <div class="dropdown">
+                <button class="dropbtn">{{ parentCategory.parentCategoryName }}</button>
+                <div class="dropdown-content">
+                    {% for category in categories %}
+                    {% if parentCategory.parentCategoryID == category.parentCategoryID %}
+                    <a href="/category/view/{{ category.urlKey }}">{{ category.categoryName }}</a>
+                    {% endif %}
+                    {% endfor %}
                 </div>
-                {% endfor %}
-            {% endfor %}
-        {% endblock %}        
-    </body>
-</html>
+                </div>
+        {% endfor %}
+    {% endblock %}        
+        
