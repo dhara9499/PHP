@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 15, 2020 at 07:16 PM
+-- Generation Time: Feb 18, 2020 at 06:23 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.2.26
 
@@ -45,10 +45,11 @@ CREATE TABLE `categories` (
 --
 
 INSERT INTO `categories` (`categoryID`, `categoryName`, `urlKey`, `categoryImage`, `categoryStatus`, `categoryDescription`, `parentCategoryID`, `craetedAt`, `updatedAt`) VALUES
-(1, 'iage', 'sdfsd', '', 0, 'hdsj', 2, '2020-02-15 06:34:26', '2020-02-15 12:14:07'),
-(3, 'vcxvx', 'cf', 'bla.jpg', 0, 'cxcvxc', 1, '2020-02-15 11:58:01', NULL),
-(4, 'dsfsdf', 'dsf', 'bla.jpg', 0, '0', 1, '2020-02-15 11:58:13', NULL),
-(5, 'sdsd', 'sds', NULL, 0, 'sdsd', 4, '2020-02-15 12:54:29', NULL);
+(1, 'Fruit ', 'fruit', 'fruitGroup.jpg', 1, 'Fruits are good for health', 3, '2020-02-18 06:07:49', NULL),
+(2, 'Vegetables', 'vegetable', 'vegGroup.jpg', 1, 'Vegetables are good for health', 3, '2020-02-18 06:08:43', NULL),
+(3, 'Grains', 'grains', 'grainGroup.jpg', 1, 'Grains are good for health', 3, '2020-02-18 06:09:43', NULL),
+(4, 'Protien', 'protien', 'protienGroup.jpg', 1, 'Protiens are good for health', 3, '2020-02-18 06:10:25', NULL),
+(5, 'Dairy Products', 'dairyProduct', 'dairyGroup.jpg', 1, 'Dairy products are good for health', 3, '2020-02-18 06:11:19', NULL);
 
 -- --------------------------------------------------------
 
@@ -66,6 +67,14 @@ CREATE TABLE `cms_pages` (
   `updatedAt` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `cms_pages`
+--
+
+INSERT INTO `cms_pages` (`pageId`, `pageTitle`, `urlKey`, `pageStatus`, `Content`, `createdAt`, `updatedAt`) VALUES
+(2, 'Home', 'home', '1', 'Home page', '2020-02-17 09:20:25', '2020-02-17 11:08:14'),
+(3, 'Aboutus', 'aboutus', '1', 'About us', '2020-02-17 09:21:19', '2020-02-17 11:08:23');
+
 -- --------------------------------------------------------
 
 --
@@ -73,7 +82,7 @@ CREATE TABLE `cms_pages` (
 --
 
 CREATE TABLE `parentcategory` (
-  `parentCategoryID` int(6) NOT NULL,
+  `parentCategoryID` int(11) NOT NULL,
   `parentCategoryName` varchar(60) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -114,9 +123,12 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`productID`, `productName`, `SKU`, `urlKey`, `productImage`, `productStatus`, `productDescription`, `shortDescription`, `productStock`, `productPrice`, `createdAt`, `updatedAt`) VALUES
-(19, 'sdsd', 'sdsd', 'sds', 'bl.png', 1, 'kdsfk', 'dl', 'sfll', 'lfdl', '2020-02-15 08:51:33', '2020-02-15 08:51:54'),
-(20, 'sdfsdf', '53331253', 'sds', 'bl.png', 0, 'erwr', 'ereg', 'dfdg', 'gdfd', '2020-02-15 10:37:14', NULL),
-(21, 'sds', 'dsd', 'sds', 'bl.png', 0, 'sdsd', 'scxs', 'xsx', 'xcxcd', '2020-02-15 10:42:29', NULL);
+(1, 'Apple', 'fruit1', 'apple', 'apple.jpg', 1, 'Apple is red', 'Apple', '50', '35', '2020-02-18 07:43:36', '2020-02-18 08:27:05'),
+(2, 'Banana', 'fruit2', 'banana', 'banana.jpg', 1, 'Banana is yellow', 'Banana', '60', '25', '2020-02-18 07:44:13', '2020-02-18 08:44:43'),
+(3, 'Mango', 'fruit3', 'mango', 'msngo.jpg', 1, 'Mangoes are sweet', 'Mango', '100', '90', '2020-02-18 07:45:20', '2020-02-18 09:04:35'),
+(4, 'Potatoes', 'veg1', 'potatoes', 'poteto.jpg', 1, 'Potato', 'Potato', '200', '20', '2020-02-18 07:48:14', '2020-02-18 09:43:42'),
+(5, 'Tomato', 'veg2', 'tomato', 'tomato.jpg', 1, 'Tomato', 'Tomato', '200', '50', '2020-02-18 07:49:09', '2020-02-18 09:44:09'),
+(6, 'onion', 'veg3', 'onion', 'onion.jpg', 1, 'Onion', 'Onion', '50', '25', '2020-02-18 07:50:16', '2020-02-18 09:44:25');
 
 -- --------------------------------------------------------
 
@@ -131,6 +143,18 @@ CREATE TABLE `product_categories` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
+-- Dumping data for table `product_categories`
+--
+
+INSERT INTO `product_categories` (`pcID`, `productID`, `categoryID`) VALUES
+(1, 1, 1),
+(2, 2, 1),
+(3, 3, 1),
+(4, 4, 2),
+(5, 5, 2),
+(6, 6, 2);
+
+--
 -- Indexes for dumped tables
 --
 
@@ -139,6 +163,7 @@ CREATE TABLE `product_categories` (
 --
 ALTER TABLE `categories`
   ADD PRIMARY KEY (`categoryID`),
+  ADD UNIQUE KEY `urlKey` (`urlKey`),
   ADD KEY `categories_ibfk_1` (`parentCategoryID`);
 
 --
@@ -159,15 +184,16 @@ ALTER TABLE `parentcategory`
 --
 ALTER TABLE `products`
   ADD PRIMARY KEY (`productID`),
-  ADD UNIQUE KEY `SKU` (`SKU`);
+  ADD UNIQUE KEY `SKU` (`SKU`),
+  ADD UNIQUE KEY `urlKey` (`urlKey`);
 
 --
 -- Indexes for table `product_categories`
 --
 ALTER TABLE `product_categories`
   ADD PRIMARY KEY (`pcID`),
-  ADD KEY `categoryID` (`categoryID`),
-  ADD KEY `productID` (`productID`);
+  ADD KEY `productID` (`productID`),
+  ADD KEY `categoryID` (`categoryID`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -183,25 +209,25 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `cms_pages`
 --
 ALTER TABLE `cms_pages`
-  MODIFY `pageId` int(6) NOT NULL AUTO_INCREMENT;
+  MODIFY `pageId` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `parentcategory`
 --
 ALTER TABLE `parentcategory`
-  MODIFY `parentCategoryID` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `parentCategoryID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `productID` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `productID` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `product_categories`
 --
 ALTER TABLE `product_categories`
-  MODIFY `pcID` int(6) NOT NULL AUTO_INCREMENT;
+  MODIFY `pcID` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Constraints for dumped tables
@@ -217,8 +243,8 @@ ALTER TABLE `categories`
 -- Constraints for table `product_categories`
 --
 ALTER TABLE `product_categories`
-  ADD CONSTRAINT `product_categories_ibfk_1` FOREIGN KEY (`categoryID`) REFERENCES `categories` (`categoryID`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `product_categories_ibfk_2` FOREIGN KEY (`productID`) REFERENCES `products` (`productID`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `product_categories_ibfk_2` FOREIGN KEY (`productID`) REFERENCES `products` (`productID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `product_categories_ibfk_3` FOREIGN KEY (`categoryID`) REFERENCES `categories` (`categoryID`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
