@@ -12,10 +12,7 @@
         }
 
         public function addCMS() {
-            $CMSPageData = Controller::prepareData($_POST['CMSPage']);
-            $CMSPageData['pageStatus'] === 'on' 
-            ? $CMSPageData['pageStatus'] = 1 
-            : $CMSPageData['pageStatus'] = 0 ;
+            $CMSPageData = pagesModel::prepareCMSPageData($_POST['CMSPage']);
             if(pagesModel::isUniqueUrl($_POST['CMSPage']['urlKey'])) {
                 pagesModel::insertCMSPageData($CMSPageData);
                 header("location: /Admin/cms/Pages");
@@ -34,10 +31,7 @@
 
         public function editCMSPageData() {
             if(isset($_POST['btnUpdateCMSPage'])) {
-                $CMSPageData = Controller::prepareData($_POST['CMSPage']);
-                $CMSPageData['pageStatus'] == 'on' 
-                ? $CMSPageData['pageStatus'] = 1 
-                : $CMSPageData['pageStatus'] = 0;
+                $CMSPageData = pagesModel::prepareCMSPageData($_POST['CMSPage']);
                 pagesModel::editCMSPage($CMSPageData, $_SESSION['CMSPageID']);
             }
             header("location: /Admin/CMS/pages");

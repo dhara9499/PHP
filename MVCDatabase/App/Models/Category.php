@@ -15,7 +15,7 @@
                                 INNER JOIN product_categories pc ON
                                     p.productID = pc.productID
                                 INNER JOIN categories c ON
-                                    c.categoryID = pc.categoryID AND c.urlKey = '$urlKey'");
+                                    c.categoryID = pc.categoryID AND c.urlKey = '$urlKey' AND p.productStatus = '1'");
             $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
             return $results;
         } 

@@ -12,29 +12,12 @@
             View::renderTemplate("Admin/addNewProduct.html", ['categories' => $categories]);
         }
 
-        public function prepareProductData($productData) {
-            $productData = Controller::prepareData($productData);
-            $productData['productStatus'] === 'on' 
-            ? $productData['productStatus'] = 1 
-            : $productData['productStatus'] = 0;
-            return $productData;
-        }
-
-        public function prepareProductCategoriesData($categoryID, $productID) {
-            $pcData = [];
-            $pcData['productID'] = $productID;
-            $pcData['categoryID'] = $categoryID;
-            return $pcData;
-        }
-
         public function addProduct() {
-            $productData = $this->prepareProductData($_POST['product']);
-            $productData['productImage'] = $_FILES['product']['name']['productImage'];
+            $productData = productsModel::prepareProductData($_POST['product'], $_FILES['product']['name']['productImage']);
             if(($this->getImageData('productImage') && productsModel::isUniqueUrl($_POST['product']['urlKey']) && productsModel::isUniqueSKU($_POST['product']['SKU']))) {
                 $productID = productsModel::insertProductData('products', $productData);
-                $pcData = $this->prepareProductCategoriesData($_POST['categoryID'], $productID);
+                $pcData = productsModel::prepareProductCategoriesData($_POST['categoryID'], $productID);
                 productsModel::insertProductData('product_categories', $pcData);
-                
                 header("location: /Admin/Products");
             } else {
                 echo '<script>alert(\' Please enter unique url key and SKU\');</script>';
@@ -51,10 +34,7 @@
 
         public function editProductData() {
             if(isset($_POST['btnUpdateProduct'])) {
-                $productData = Controller::prepareData($_POST['product']);
-                $productData['productStatus'] == 'on' 
-                ? $productData['productStatus'] = 1 
-                : $productData['productStatus'] = 0;
+                $productData = productsModel::prepareProductData($_POST['product'], $_FILES['product']['name']['productImage']);
                 productsModel::editProductData($productData, $_SESSION['productID']);
             }
             header("location: /Admin/Products");
@@ -93,6 +73,4 @@
             }
         }
     }
-
-
 ?>

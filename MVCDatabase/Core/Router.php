@@ -14,6 +14,9 @@
             //convert variables eg. {controller}
             $route = preg_replace('/\{([a-z]+)\}/', '(?P<\1>[a-z-]+)', $route);
             
+            //convert variables eg. "urlKey"
+            $route = preg_replace('/\"([a-z-0-9 ]+)\"/', '(?P<\1>[a-z-0-9 ]+)', $route);
+
             //convert variables with custom regular expressions eg. {id:\d+}
             $route = preg_replace('/\{([a-z]+):([^\}]+)\}/', '(?P<\1>\2)', $route);
             

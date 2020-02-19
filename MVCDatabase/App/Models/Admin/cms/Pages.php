@@ -5,6 +5,14 @@
 
     class Pages extends \Core\Model {
 
+        public function prepareCMSPageData($CMSPageData) {
+            $preparedData = Model::prepareData($CMSPageData);
+            $preparedData['pageStatus'] === 'on' 
+            ? $preparedData['pageStatus'] = 1 
+            : $preparedData['pageStatus'] = 0 ;
+            return $preparedData;
+        }
+
         public function insertCMSPageData($CMSPageData) {
             Model::insertData('cms_pages', $CMSPageData);
         }

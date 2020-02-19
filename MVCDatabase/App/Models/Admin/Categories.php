@@ -5,6 +5,15 @@
 
     class Categories extends \Core\Model {
         
+        public function preparaCategoryData($categoryData, $imageName) {
+            $preparedData = Model::prepareData($categoryData);
+            $preparedData['categoryStatus'] === 'on'
+            ? ($preparedData['categoryStatus'] = 1)
+            : $preparedData['categoryStatus'] = 0;
+            $categoryData['categoryImage'] = $imageName;
+            return $preparedData;
+        }
+
         public function insertCategoryData($categoryData) {
             Model::insertData('categories', $categoryData);
         }

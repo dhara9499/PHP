@@ -5,6 +5,22 @@
 
     class Products extends \Core\Model {
 
+        public function prepareProductData($productData, $imageName) {
+            $preparedData = Model::prepareData($productData);
+            $preparedData['productStatus'] === 'on' 
+            ? $preparedData['productStatus'] = 1 
+            : $preparedData['productStatus'] = 0;
+            $preparedData['productImage'] = $imageName;
+            return $preparedData;
+        }
+
+        public function prepareProductCategoriesData($categoryID, $productID) {
+            $pcData = [];
+            $pcData['productID'] = $productID;
+            $pcData['categoryID'] = $categoryID;
+            return $pcData;
+        }
+
         public function insertProductData($tableName, $productData) {
             Model::insertData($tableName, $productData);
             $db = Model::getDB();

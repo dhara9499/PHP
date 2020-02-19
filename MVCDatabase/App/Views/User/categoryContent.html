@@ -1,12 +1,11 @@
 {% extends "home.html" %}
 {% block body %}
+<div class="categoryDivision">
     {% for product in products %}
-    <div>
-        <div><img src="/images/product/{{ product.productImage }}" height="50px" width="50px"></div>
-        <div>{{ product.productName }}</div>
+    <div class="catgeoryInnerDivision">
+        <div><img src="/images/product/{{ product.productImage }}" class="productsImage"></div>
         <div><a href="/product/view/{{ product.urlKey }}">{{ product.productName }}</a></div>
-        <div>{{ product.productPrice }}</div>
     </div>
     {% endfor %}
-    
+</div>
 {% endblock %}

@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block title %} Update Category {% endblock %}
 {% block body %}
-    <form method="POST" action="/Admin/Categories/editCategoryData">
+    <form method="POST" action="/Admin/Categories/editCategoryData" enctype="multipart/form-data">
         <div>
             <label for="category[categoryName]">Category Name:</label>
             <input type="text" name="category[categoryName]" value="{{ category.categoryName }}"/>

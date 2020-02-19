@@ -1,17 +1,16 @@
 <!DOCTYPE html>
 <html>
     <head>
-        {% block stylesheets %}
-            <link rel="stylesheet" type="text/css" href="/index.css">
-        {% endblock %}
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="/index.css">
+            <div class="headerOuterDivision">
+                <div class="headerTextDiv"><span class="headerText">MVC Ecommerce site</span></div> 
+            </div>
     </head>
     <body>
-        <header>
-            <h2> MVC Ecommerce site </h2>
-        </header>
         {% block body %}
         {% for menuLabel in menuLabels %}
-                <button class="dropbtn" ><a href="/{{ menuLabel.urlKey }}">{{ menuLabel.pageTitle }}</a></button>
+            <div class="btnDiv"><button class="dropbtn" ><a class="a" href="/{{ menuLabel.urlKey }}">{{ menuLabel.pageTitle }}</a></button></div>
         {% endfor %}
         {% for parentCategory in parentCategories %}
             <div class="dropdown">

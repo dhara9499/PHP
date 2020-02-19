@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block title %} Update Product {% endblock %}
 {% block body %}
-    <form method="POST" action="/Admin/Products/editProductData">
+    <form method="POST" action="/Admin/Products/editProductData" enctype="multipart/form-data">
         
         <div>
             <label for="product[productName]">Product Name:</label>

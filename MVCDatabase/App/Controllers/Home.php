@@ -11,7 +11,6 @@
             $menuContentData = homeModel::getDataFromDB('cms_pages');
             $categoryData = homeModel::getDataFromDB('categories');
             $parentCategories = homeModel::getDataFromDB('parentCategory');
-
             View::renderTemplate('menu.html', ['menuLabels' => $menuContentData, 'categories' => $categoryData, 'parentCategories' => $parentCategories]);
         }
 

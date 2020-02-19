@@ -8,15 +8,6 @@
             $this->route_params = $route_params;
         }
 
-        public function prepareData($data) {
-            foreach($data as $key => $value) {
-                if(is_array($value)) {
-                    $data[$key] = implode(",", $value);
-                } else {
-                    $data[$key] = $value;
-                }
-            }
-            return $data;
-        }
+        
     }
 ?>

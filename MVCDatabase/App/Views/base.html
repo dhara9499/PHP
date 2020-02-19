@@ -2,16 +2,15 @@
 <html>
     <head>
         <title>{% block title %} {% endblock %} </title>
-        {% block stylesheets %}
-            <link rel="stylesheet" type="text/css" href="/index.css">
-        {% endblock %}
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="/index.css">
+        <div class="headerOuterDivision">
+            <div class="headerTextDiv"><span class="headerText">MVC Ecommerce site</span></div> 
+        </div>
     </head>
     <body>
-        <header>
-            <h2> MVC Ecommerce site </h2>
-        </header>
-            {% block body %}
-            {% endblock %}
+        {% block body %}
+        {% endblock %}
         <footer>
             <h3>Created By: Dhara Parekh</h3>
         </footer>

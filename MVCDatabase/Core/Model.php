@@ -71,5 +71,16 @@
             $count = $stmt->rowCount();
             return $count == 1 ? true : false; 
         }
+
+        public function prepareData($data) {
+            foreach($data as $key => $value) {
+                if(is_array($value)) {
+                    $data[$key] = implode(",", $value);
+                } else {
+                    $data[$key] = $value;
+                }
+            }
+            return $data;
+        }
     }
 ?>

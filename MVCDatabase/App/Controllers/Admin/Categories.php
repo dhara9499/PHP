@@ -12,19 +12,9 @@
             View::renderTemplate("Admin/addNewCategory.html", ['parentCategories' => $parentCategories]);
         }
 
-        public function prepareCategoryData($categoryData) {
-            $categoryData = Controller::prepareData($_POST['category']);
-            $categoryData['categoryStatus'] === 'on'
-            ? ($categoryData['categoryStatus'] = 1)
-            : $categoryData['categoryStatus'] = 0;
-            $categoryData['categoryImage'] = $_FILES['category']['name']['categoryImage'];
-            return $categoryData;
-        }
-
         public function addCategory() {
-            $categoryData = $this->prepareCategoryData($_POST['category']);
+            $categoryData = $categoryData = categoriesModel::prepareCategoryData($_POST['category'], $_FILES['category']['name']['categoryImage']);
             $urlKey = $_POST['category']['urlKey'];
-
             if(($this->getImageData('categoryImage')) && (categoriesModel::isUniqueUrl($urlKey))) {
                 categoriesModel::insertCategoryData($categoryData);
                 header("location: /Admin/Categories");
@@ -44,10 +34,7 @@
 
         public function editCategoryData() {
             if(isset($_POST['btnUpdateCategory'])) {
-                $categoryData = Controller::prepareData($_POST['category']);
-                $categoryData['categoryStatus'] == 'on' 
-                ? $categoryData['categoryStatus'] = 1 
-                : $categoryData['categoryStatus'] = 0;
+                $categoryData = categoriesModel::preparaCategoryData($_POST['category'], $_FILES['category']['name']['categoryImage']);
                 categoriesModel::editCategoryData($categoryData, $_SESSION['categoryID']);
             }
             header("location: /Admin/Categories");

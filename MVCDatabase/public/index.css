@@ -1,6 +1,59 @@
-div {
-    margin-top: 2%;
+html,body {
+	height: 100%;
+	width: 100%;
 }
+div {
+	margin-top: 2%;
+}
+.headerOuterDivision {
+    height:10%;
+	width:98%;
+	margin-top: 0px;
+    background:#FFFF99;
+    border-style:solid;
+    border-color:orange;
+}
+.headerText {
+	margin-top: 0px;
+	border:2px white solid;
+	background:white;
+}
+.headerTextDiv {
+	margin-top: 0px;
+	text-align:center;
+	color:navy;
+	padding:1%;
+	font-size:20px;
+	text-transform: uppercase;
+	font-family:Algerian;
+	display:block;
+	width:50%;
+	margin-left:25%;
+}
+
+footer {
+	margin-top: 10%;
+	margin-left: 40%;
+}
+
+tr:nth-child(even){
+	background-color: #ffe6f7;
+}
+
+tr:hover {
+	background-color:#ffffff;
+}
+td {
+	text-align: center;
+}
+th {
+  padding-top: 1%;
+  padding-bottom: 1%;
+  text-align: center;
+  background-color: #77276F;
+  color: white;
+}
+
 
 button {
     margin-top: 5%;
@@ -8,17 +61,64 @@ button {
     margin-bottom: 5%;
 }
 
+.btnDiv {
+	float: left;
+	margin-left: 1%;
+}
 .dropbtn {
-  background-color: #4CAF50;
+  background-color: #229EAD;
   color: white;
   padding: 16px;
   font-size: 16px;
   border: none;
 }
 
+.a {
+	color: white;
+	text-decoration: none;
+}
+
+.productsImage {
+	height: 200px;
+	width: 200px;
+	border-radius: 2px;
+}
+
+.categoryDivision {
+	border: 2px solid purple;
+	width: 90%;
+	min-height: 30%;
+	height: auto;
+	overflow: auto;
+}
+
+.catgeoryInnerDivision {
+	float: left;
+	margin-left: 3%;
+	margin-bottom: 2%;
+}
+.outerProduct {
+	border: 2px solid orangered;
+	min-height: 30%;
+	height: auto;
+	overflow: auto;
+	padding: 2%;
+	width: 30%;
+}
+
+.productImage {
+	border-radius: 5px;
+	float: left;
+}
+
+.productContent {
+	float: left;
+	margin-left: 3%;
+}
 .dropdown {
   position: relative;
   display: inline-block;
+	margin-left: 1%;
 }
 
 .dropdown-content {
@@ -41,5 +141,5 @@ button {
 
 .dropdown:hover .dropdown-content {display: block;}
 
-.dropdown:hover .dropbtn {background-color: #3e8e41;}
+.dropdown:hover .dropbtn {background-color: gray;}
 
