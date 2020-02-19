@@ -7,12 +7,20 @@
 
     class Categories extends \Core\Controller {
 
-        public function add() {
+        protected function before() {
+            if(isset($_SESSION['userName'])) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        public function addAction() {
             $parentCategories = categoriesModel::getParentCategoryName();
             View::renderTemplate("Admin/addNewCategory.html", ['parentCategories' => $parentCategories]);
         }
 
-        public function addCategory() {
+        public function addCategoryAction() {
             $categoryData = $categoryData = categoriesModel::prepareCategoryData($_POST['category'], $_FILES['category']['name']['categoryImage']);
             $urlKey = $_POST['category']['urlKey'];
             if(($this->getImageData('categoryImage')) && (categoriesModel::isUniqueUrl($urlKey))) {
@@ -24,7 +32,7 @@
             }
         }
 
-        public function edit() {
+        public function editAction() {
             $categoryID = $this->route_params['id'];
             $_SESSION['categoryID'] = $categoryID;
             $parentCategories = categoriesModel::getParentCategoryName();
@@ -32,7 +40,7 @@
             View::renderTemplate("Admin/updateCategory.html", ['category' => $categoryData, 'parentCategories' => $parentCategories]);
         }
 
-        public function editCategoryData() {
+        public function editCategoryDataAction() {
             if(isset($_POST['btnUpdateCategory'])) {
                 $categoryData = categoriesModel::preparaCategoryData($_POST['category'], $_FILES['category']['name']['categoryImage']);
                 categoriesModel::editCategoryData($categoryData, $_SESSION['categoryID']);
@@ -40,7 +48,7 @@
             header("location: /Admin/Categories");
         }
 
-        public function Delete() {
+        public function DeleteAction() {
             $categoryID = $_GET['categoryID'];
             categoriesModel::deleteCategoryData($categoryID);
             header("location: /Admin/Categories");

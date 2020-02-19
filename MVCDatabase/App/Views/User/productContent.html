@@ -1,5 +1,6 @@
 {% extends "home.html" %}
 {% block body %}
+
 <div class="outerProduct">
     <div class="productImage">
         <img src="/images/Product/{{ productDetail.productImage}}" height="200px" width="200px">
@@ -9,4 +10,37 @@
         <div>{{ productDetail.productPrice }}</div>    
     </div>
 </div>
+<div>
+    <label for="quantity">Quantity</label>
+    <select name="quantity" id="quantity">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+    </select>
+</div>
+<div>
+
+    <button onclick="addToCart()">Add to cart</button>
+</div>
+
+<script type="text/javascript">
+    
+    function addToCart() {
+        var quantityValue = $('#quantity').val();
+        var cartDetails = { 'productID': '{{productDetail.productID}}',
+                        'userID' : 3, 'quatity': quantityValue
+        }
+        var data = JSON.stringify(cartDetails);
+        $.ajax({
+            url: '/Product/addToCart',
+            method: 'POST',
+            dataType: 'json',
+            data: {'data': data},
+            success: function(data){
+                alert('data added successfully');
+            }
+        });
+    }
+</script>
 {% endblock %}

@@ -18,6 +18,7 @@
                 $userName = $_POST['userName'];
                 $password = $_POST['password'];
                 if(adminModel::login($userName, $password)) {
+                    $_SESSION['userName'] = $userName;
                     header("location:dashboard");
                 } else {
                     echo '<script>alert("enter valid username and password")</script>';
@@ -25,16 +26,25 @@
             }
         }
 
-        public function dashboard() {
+        protected function before() {
+            if(isset($_SESSION['userName'])) {
+                return true;
+            } else {
+                View::renderTemplate("adminView.html");
+            }
+        }
+
+
+        public function dashboardAction() {
             View::renderTemplate("Admin/dashboardView.html");
         }
 
-        public function products() {
+        public function productsAction() {
             $products = productsModel::getDataFromDB('products');
             View::renderTemplate('Admin/showProducts.html', ['products' => $products]);
         }
 
-        public function categories() {
+        public function categoriesAction() {
             $categories = categoriesModel::showCategoryData();
             View::renderTemplate('Admin/showCategories.html', ['categories' => $categories]);
         }

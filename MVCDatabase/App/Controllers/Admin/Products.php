@@ -7,12 +7,20 @@
     
     class Products extends \Core\Controller {
 
-        public function add() {
+        protected function before() {
+            if(isset($_SESSION['userName'])) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        public function addAction() {
             $categories = productsModel::getDataFromDB('categories');
             View::renderTemplate("Admin/addNewProduct.html", ['categories' => $categories]);
         }
 
-        public function addProduct() {
+        public function addProductAction() {
             $productData = productsModel::prepareProductData($_POST['product'], $_FILES['product']['name']['productImage']);
             if(($this->getImageData('productImage') && productsModel::isUniqueUrl($_POST['product']['urlKey']) && productsModel::isUniqueSKU($_POST['product']['SKU']))) {
                 $productID = productsModel::insertProductData('products', $productData);
@@ -25,14 +33,14 @@
             }
         }
 
-        public function edit() {
+        public function editAction() {
             $productID = $this->route_params['id'];
             $_SESSION['productID'] = $productID;
             $productData = productsModel::getRowDataFromDB($productID);
             View::renderTemplate("Admin/updateProduct.html", ['product' => $productData]);
         }
 
-        public function editProductData() {
+        public function editProductDataAction() {
             if(isset($_POST['btnUpdateProduct'])) {
                 $productData = productsModel::prepareProductData($_POST['product'], $_FILES['product']['name']['productImage']);
                 productsModel::editProductData($productData, $_SESSION['productID']);
@@ -40,7 +48,7 @@
             header("location: /Admin/Products");
         }
 
-        public function Delete() {
+        public function DeleteAction() {
             $productID = $_GET['productID'];
             productsModel::deleteProductData($productID);
             header("location: /Admin/Products");

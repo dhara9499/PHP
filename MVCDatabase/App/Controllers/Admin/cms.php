@@ -8,7 +8,15 @@
 
     class cms extends \Core\Controller {
 
-        public function pages() {
+        protected function before() {
+            if(isset($_SESSION['userName'])) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        public function pagesAction() {
             $CMSPageData = categoriesModel::getDataFromDB();
             View::renderTemplate('Admin/showCMSPages.html', ['cmsPages' => $CMSPageData]);
         }
