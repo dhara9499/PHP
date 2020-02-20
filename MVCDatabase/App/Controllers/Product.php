@@ -18,10 +18,6 @@
             View::renderTemplate('User/ProductContent.html', ['productDetail' => $productData]);
         }
 
-        public function addToCart() {
-            $data = (array)json_decode($_POST['data']);
-            print_r($data);
-        }
     }
 
 

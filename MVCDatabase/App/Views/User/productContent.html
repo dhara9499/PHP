@@ -22,23 +22,25 @@
 <div>
 
     <button onclick="addToCart()">Add to cart</button>
+    <button><a href="/cart/displayCart">Show Cart</a></button>
 </div>
 
 <script type="text/javascript">
     
     function addToCart() {
         var quantityValue = $('#quantity').val();
-        var cartDetails = { 'productID': '{{productDetail.productID}}',
-                        'userID' : 3, 'quatity': quantityValue
-        }
+        var cartDetails = { 'totalAmount' :"{{ productDetail.productPrice}}",
+                            'productID' : '{{ productDetail.productID }}',
+                            'quantity': quantityValue
+                        }
         var data = JSON.stringify(cartDetails);
         $.ajax({
-            url: '/Product/addToCart',
+            url: '/cart/addToCart',
             method: 'POST',
             dataType: 'json',
-            data: {'data': data},
-            success: function(data){
-                alert('data added successfully');
+            data: {'cartDetails': data},
+            success: function(data) {
+                alert('item added to the cart successfully');
             }
         });
     }
