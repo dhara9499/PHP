@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}Display Services{% endblock %}
+{% block body %}
+    <table border="1">
+        <tr>
+            <th>Title</th>
+            <th>Vehicle Number</th>
+            <th>License Number</th>
+            <th>Date</th>
+            <th>Time Slot</th>
+            <th>Vehicle issue</th>
+            <th>Service Center</th>
+            <th>Status</th>
+            <th colspan="2">Action</th>
+        </tr>
+        {% for service in services %}
+        <tr>
+            <td>{{service.title}}</td>
+            <td>{{service.vehicleNumber}}</td>
+            <td>{{service.licenseNumber}}</td>
+            <td>{{service.date}}</td>
+            <td>{{service.timeSlot}}</td>
+            <td>{{service.vehicleissue}}</td>
+            <td>{{service.serviceCenter}}</td>
+            <td>{{ service.status == 0 ? 'pending' : 'Approve' }}</td>
+            <td><a href= "/{{baseUrl}}/backend/admin/edit/{{ service.serviceID }}">Edit</a></td>
+            <td><a href= "/{{baseUrl}}/backend/admin/delete/did={{ service.serviceID }}">Delete</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

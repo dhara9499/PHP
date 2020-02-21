@@ -1,7 +1,7 @@
 <?php 
 
     namespace App\Models;
-
+    use PDO;
     use Core\Model;
 
     class User extends \Core\Model {
@@ -32,8 +32,10 @@
             return $userData['userID'];
         }
 
-        public function getServiceData() {
-            $serviceData = Model::fetchAll('serviceregistration');
+        public function getServiceData($userID) {
+            $db = Model::getDB();
+            $stmt = $db->query("SELECT * FROM serviceregistration WHERE userID = '$userID'");
+            $serviceData = $stmt->fetchAll(PDO::FETCH_ASSOC);
             return $serviceData;
         }
     }

@@ -1,10 +1,7 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>
-            Service registration
-        </title>
-    </head>
+
+{% extends "base.html" %}
+{% block title %}Display Services{% endblock %}
+{% block body %}
     <body>
         <button><a href="/{{ baseUrl }}/users/Service/addNewService">New Service registration</a></button>
 
@@ -19,9 +16,8 @@
                 <th>Service Center</th>
                 <th>Status</th>
             </tr>
-            
+            {% for serviceData in serviceDatas %}
             <tr>
-                {% for serviceData in serviceDatas %}
                 <td>{{serviceData.title}}</td>
                 <td>{{serviceData.vehicleNumber}}</td>
                 <td>{{serviceData.licenseNumber}}</td>
@@ -30,8 +26,7 @@
                 <td>{{serviceData.vehicleissue}}</td>
                 <td>{{serviceData.serviceCenter}}</td>
                 <td>{{ serviceData.status == 0 ? 'pending' : 'Approve' }}</td>
-                {% endfor %}
             </tr>
+            {% endfor %}
         </table>
-    </body>
-</html>
+   {% endblock %}

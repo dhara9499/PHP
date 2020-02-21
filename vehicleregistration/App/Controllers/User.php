@@ -31,15 +31,15 @@
                 $userID = userModel::insertUserData('user', $_POST['user']);
                 $addressData = userModel::prepareAddressData($userID, $_POST['address']);
                 userModel::insertUserData('userAddress', $addressData);
-                header('location:dashBoard');
+                header('location:login');
             } else {
                 echo "<script>alert('please enter unique email')</script>";
                 View::renderTemplate('Users/userRegistrationView.html');
             }
         }
 
-        public function dashBoard() {
-            $serviceData = userModel::getServiceData();
+        public function dashBoardAction() {
+            $serviceData = userModel::getServiceData($_SESSION['userID']);
             View::renderTemplate('Users/dashBoard.html', ['serviceDatas' => $serviceData]);
         }
 

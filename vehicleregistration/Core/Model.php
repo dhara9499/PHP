@@ -59,7 +59,7 @@
 
         protected static function fetchRow($tableName, $fieldName, $fieldValue) {
             $db = Model::getDB();
-            $stmt = $db->query("SELECT * FROM $tableName WHERE $fieldName = '$fieldValue'");
+            $stmt = $db->query("SELECT * FROM `$tableName` WHERE '$fieldName' = $fieldValue");
             $results = $stmt->fetch(PDO::FETCH_ASSOC);
             return $results;
         }
