@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Add Service</title>
+    </head>
+
+    <body>
+        <form method="POST" action="addServiceData">
+            <div>
+                <label for="service[title]">Title</label>
+                <input type="text" name="service[title]">
+            </div>
+            
+            <div>
+                <label for="service[vehicleNumber]">Vehicle Number</label>
+                <input type="text" name="service[vehicleNumber]">
+            </div>
+
+            <div>
+                <label for="service[licenseNumber]">License Number</label>
+                <input type="text" name="service[licenseNumber]">
+            </div>
+
+            <div>
+                <label for="service[date]">Date</label>
+                <input type="date" name="service[date]">
+            </div>
+
+            <div>
+                <label for="service[timeSlot]">Time Slot</label>
+                <input list="timeSlots" name="service[timeSlot]">
+                {% set timeSlots = ['9-10', '10-11', '11-12', '12-1','1-2', '2-3', '3-4', '4-5', '5-6'] %}
+                <datalist id="timeSlots">
+                    {% for timeslot in timeSlots%}
+                    <option value="{{ timeslot }}">{{ timeslot }}</option>
+                    {% endfor %}
+                </datalist>
+            </div>
+
+            <div>
+                <label for="service[vehicleIssue]">Vehicle Issue</label>
+                <textarea name="service[vehicleIssue]"></textarea>
+            </div>
+
+            <div>
+                <label for="service[serviceCenter]">Service Center</label>
+                <input list="serviceCenters" name="service[serviceCenter]">
+                <datalist id="serviceCenters">
+                    <option value="service1">service center 1</option>
+                    <option value="service2">service center 2</option>
+                    <option value="service3">service center 3</option>
+                </datalist>
+            </div>
+
+            <div>
+                <label for="service[status]">Status</label>
+                <select name="service[status]" >
+                    <option value="0">Pending</option>
+                    <option value="1">Approved</option>
+                </select>   
+            </div>
+            <div>
+                <input type="submit" name="btnServiceAdd" value="Add new service"/>    
+            </div>
+            
+        </form>
+    </body>
+</html>

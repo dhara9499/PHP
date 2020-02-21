@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>User Registration</title>
+    </head>
+    <body>
+        <form method="POST" action="registerData">
+            <div>
+                <label for="user[firstName]">First Name</label>
+                <input type="text" name="user[firstName]">
+            </div>
+            
+            <div>
+                <label for="user[lastName]">Last Name</label>
+                <input type="text" name="user[lastName]">
+            </div>
+
+            <div>
+                <label for="user[email]">Email</label>
+                <input type="email" name="user[email]">
+            </div>
+
+            <div>
+                <label for="user[password]">Password</label>
+                <input type="password" name="user[password]">
+            </div>
+
+            <div>
+                <label for="user[phoneNumber]">Phone Number</label>
+                <input type="text" name="user[phoneNumber]">
+            </div>
+
+            <div>
+                <label for="address[street]">Street</label>
+                <input type="text" name="address[street]">
+            <div>
+
+            <div>
+                <label for="address[city]">City</label>
+                <input list="cities" name="address[city]">
+                <datalist id="cities" name="address[city]">
+                    <option value="Jamnagar">Jamnagar</option>
+                    <option value="Rajkot">Rajkot</option>
+                    <option value="Ahemdabad">Ahemdabad</option>
+                </datalist>
+            </div>
+
+            <div>
+                <label for="address[zipCode]">Zip Code</label>
+                <input type="text" name="address[zipCode]">
+            <div>
+
+            <div>
+                <label for="address[state]">State</label>
+                <input list="states" name="address[state]">
+                <datalist id="states" >
+                    <option value="Gujarat">Gujarat</option>
+                    <option value="UP">UP</option>
+                    <option value="MP">MP</option>
+                </datalist>
+            </div>
+
+            <div>
+                <label for="address[country]">Country</label>
+                <input list="countries" name="address[country]">
+                <datalist id="countries" >
+                    <option value="India">India</option>
+                    <option value="USA">USA</option>
+                    <option value="Dubai">Dubai</option>
+                </datalist>
+            </div>
+
+            <div>
+                <input type="submit" name="btnUserRegistration">
+            </div>
+            
+            
+        
+        </form>    
+    </body>
+</html>

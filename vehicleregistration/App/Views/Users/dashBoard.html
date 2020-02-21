@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Service registration
+        </title>
+    </head>
+    <body>
+        <button><a href="/{{ baseUrl }}/users/Service/addNewService">New Service registration</a></button>
+
+        <table border="1">
+            <tr>
+                <th>Title</th>
+                <th>Vehicle Number</th>
+                <th>License Number</th>
+                <th>Date</th>
+                <th>Time Slot</th>
+                <th>Vehicle issue</th>
+                <th>Service Center</th>
+                <th>Status</th>
+            </tr>
+            
+            <tr>
+                {% for serviceData in serviceDatas %}
+                <td>{{serviceData.title}}</td>
+                <td>{{serviceData.vehicleNumber}}</td>
+                <td>{{serviceData.licenseNumber}}</td>
+                <td>{{serviceData.date}}</td>
+                <td>{{serviceData.timeSlot}}</td>
+                <td>{{serviceData.vehicleissue}}</td>
+                <td>{{serviceData.serviceCenter}}</td>
+                <td>{{ serviceData.status == 0 ? 'pending' : 'Approve' }}</td>
+                {% endfor %}
+            </tr>
+        </table>
+    </body>
+</html>
