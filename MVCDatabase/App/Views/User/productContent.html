@@ -29,7 +29,7 @@
     
     function addToCart() {
         var quantityValue = $('#quantity').val();
-        var cartDetails = { 'totalAmount' :"{{ productDetail.productPrice}}",
+        var cartDetails = { 'price' :"{{ productDetail.productPrice}}",
                             'productID' : '{{ productDetail.productID }}',
                             'quantity': quantityValue
                         }

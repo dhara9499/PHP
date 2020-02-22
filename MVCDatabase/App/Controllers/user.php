@@ -3,6 +3,7 @@
     namespace App\Controllers;
     use Core\Controller;
     use Core\View;
+    use App\Models\user as userModel; 
     
     class user extends \Core\Controller {
 
@@ -12,9 +13,17 @@
 
         public function userLogin() {
             if(isset($_POST['btnUserLogin'])) {
-                if($_POST['name'] == 'dhara' && $_POST['password'] == 'dhara') {
-                    $_SESSION['userID'] = 1;
+                $userData = userModel::isUserExist($_POST['name'], $_POST['password']);
+                $_SESSION['userID'] = $userData['userID'];
+                if($userData != null) {
+                    $cartData = userModel::isCartExist($userData['userID']);
+                    if($cartData != null) {
+                        $_SESSION['cartID'] = $cartData['cartID'];    
+                    } 
                     header("location:/Home");
+                } else {
+                    echo 'alert(\'Enter valid name and password\')';
+                    View::renderTemplate("User/login.html");
                 }
             }
         }

@@ -18,36 +18,52 @@
 
         public function addToCart() {
             $cartDetail = (array)json_decode($_POST['cartDetails']);
-            $cartData = cartModel::isCartExistAndActive($_SESSION['userID']);
+            if(isset($_SESSION['cartID'])) { //check if cart exist
+                $productData = cartModel::isProductExists($cartDetail['productID']);
+                $cartData = cartModel::getCartData($_SESSION['cartID']);
+                if($productData != null) { //check if product exist
+                    $quantity = $productData['quantity'] + $cartDetail['quantity'];
+                    $preparedItemData = cartModel::prepareUpdateCartItemData($quantity);
+                    cartModel::updateCartItemData('cartitem', $preparedItemData, 'productID', $productData['productID']);
+                    $totalAmount = $cartData['totalAmount'] + ($cartDetail['price'] * $cartDetail['quantity']);
+                    $preparedData = cartModel::prepareUpdateCartData($totalAmount);
+                    cartModel::updateCartItemData('cart', $preparedData, 'cartID', $_SESSION['cartID']);
 
-            if($cartData != null) {
-                $_SESSION['cartID'] = $cartData['cartID'];
-                $isProductExist = cartModel::isProductExists($cartDetail['productID']);
-                
-                if($isProductExist != null) {
-                    $price = ($cartData['totalAmount'] + ($cartDetail['quantity'] * $cartDetail['totalAmount']));
-                    $updateCartData = cartModel::prepareUpdateCartData($price);
-                    $updateCartItemData = cartModel::prepareUpdateCartItemData($cartDetail['quantity'] + $isProductExist['quantity']);
-                    cartModel::updateCartItemData('cart', $updateCartData, 'cartID', $_SESSION['cartID']);
-                    cartModel::updateCartItemData('cartitem', $updateCartItemData, 'productID' ,$cartDetail['productID']);
-                } else {
+                } else { //create new product 
                     $cartItemData = cartModel::prepareCartItemData($_SESSION['cartID'], $cartDetail);
-                    cartModel::insertCartData('cartitem', $cartItemData);  
-                    $updateData = cartModel::prepareUpdateCartData(($cartDetail['quantity'] * $cartDetail['totalAmount']) + $cartData['totalAmount']);
-                    cartModel::updateCartItemData('cart', $updateData, 'cartID', $_SESSION['cartID']);
+                    cartModel::insertCartData('cartitem', $cartItemData);
+                    $totalAmount = $cartData['totalAmount'] + ($cartDetail['price'] * $cartDetail['quantity']);
+                    $preparedData = cartModel::prepareUpdateCartData($totalAmount);
+                    cartModel::updateCartItemData('cart', $preparedData, 'cartID', $_SESSION['cartID']);
                 }
+                
+            } else { // create new cart and add product
+                $cartInsertData = cartModel::prepareCartData($_SESSION['userID'], $cartDetail);
+                $cartID = cartModel::insertCartData('cart', $cartInsertData);
+                $cartItemInsertData = cartModel::prepareCartItemData($cartID, $cartDetail);
+                cartModel::insertCartData('cartitem', $cartItemInsertData);
+                $_SESSION['cartID'] = $cartID;
+            
+            }
+            
+            
+        }
+        
+        public function displayCart() {
+            if(isset($_SESSION['cartID'])) {
+                $userCartData = cartModel::getCartItemDataFromDB($_SESSION['cartID']);
+                View::renderTemplate("/User/viewCart.html", ['userCartData' => $userCartData]);    
             } else {
-                $cartData = cartModel::prepareCartData($_SESSION['userID'], $cartDetail);
-                $cartID = cartModel::insertCartData('cart', $cartData);
-                $cartItemData = cartModel::prepareCartItemData($cartID, $cartDetail);
-                cartModel::insertCartData('cartitem', $cartItemData);
+                View::renderTemplate("/User/viewCart.html");
             }
         }
 
-        public function displayCart() {
-            View::renderTemplate("/User/viewCart.html");
+        public function getCount() {
+            if(isset($_SESSION['cartID'])) {
+                cartModel::getCartItemCount($cartID);
+            }
+            
         }
-
     }
 
 

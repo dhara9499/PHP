@@ -4,12 +4,12 @@
         <meta charset="utf-8">
         <link rel="stylesheet" href="/index.css">
         <script src="/jquery-3.4.1.min.js"></script>
-        <script src="/index.js" type="text/javascript"></script>
             <div class="headerOuterDivision">
                 <div class="headerTextDiv"><span class="headerText">MVC Ecommerce site</span></div> 
             </div>
     </head>
     <body>
+        <div>
         {% block body %}
         {% for menuLabel in menuLabels %}
             <div class="btnDiv"><button class="dropbtn" ><a class="a" href="/{{ menuLabel.urlKey }}">{{ menuLabel.pageTitle }}</a></button></div>
@@ -24,7 +24,26 @@
                     {% endif %}
                     {% endfor %}
                 </div>
-                </div>
+            </div>
         {% endfor %}
-    {% endblock %}        
+       <a href="/cart/displayCart" id="itemCount">cart</a>
+    {% endblock %}
+         
+    <script type="text/javascript">
+        window.onload = function count() {
+            getItemCount();
+        }
+        function getItemCount() {
+                $.ajax({
+                method: 'POST',
+                url: '/cart/getCount',
+                success: function(data) {
+                    alert(data);
+                    $('#itemCount').html(data);
+                }
+            });
+        }
+    </script>
+ </body>
+    
         
