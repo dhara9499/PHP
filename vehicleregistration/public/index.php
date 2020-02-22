@@ -5,6 +5,7 @@
     $router = new Core\Router();
 
     $router->add('', ['controller' => 'User', 'action' => 'login']);
+    $router->add('login', ['controller' => 'User', 'action' => 'login']);
     $router->add('{controller}/{action}');
     $router->add('{controller}/{action}/{id:\d+}');
     $router->add('users/{controller}/{action}', ['namespace' => 'users']);

@@ -24,7 +24,7 @@
             <td>{{service.serviceCenter}}</td>
             <td>{{ service.status == 0 ? 'pending' : 'Approve' }}</td>
             <td><a href= "/{{baseUrl}}/backend/admin/edit/{{ service.serviceID }}">Edit</a></td>
-            <td><a href= "/{{baseUrl}}/backend/admin/delete/did={{ service.serviceID }}">Delete</a></td>
+            <td><a href= "/{{baseUrl}}/backend/admin/delete/{{ service.serviceID }}">Delete</a></td>
         </tr>
         {% endfor %}
     </table>

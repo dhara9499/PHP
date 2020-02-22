@@ -38,9 +38,14 @@
             }
         }
 
-        public function dashBoardAction() {
-            $serviceData = userModel::getServiceData($_SESSION['userID']);
-            View::renderTemplate('Users/dashBoard.html', ['serviceDatas' => $serviceData]);
+        public function dashBoard() {
+            if(isset($_SESSION['userID'])) {
+                $serviceData = userModel::getServiceData($_SESSION['userID']);
+                View::renderTemplate('Users/dashBoard.html', ['serviceDatas' => $serviceData]);
+            } else {
+                header("location: login");
+            }
+            
         }
 
 

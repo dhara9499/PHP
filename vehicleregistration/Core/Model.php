@@ -28,7 +28,7 @@
 
         protected static function isUserExists($tableName, $email, $password) {
             $db = Model::getDB();
-            $stmt = $db->prepare("SELECT * FROM $tableName WHERE email = '$email' AND password = $password");
+            $stmt = $db->prepare("SELECT * FROM $tableName WHERE email = '$email' AND password = '$password'");
             $stmt->execute();
             $count = $stmt->rowCount();
             return $count == 1 ? true : false; 
@@ -59,7 +59,7 @@
 
         protected static function fetchRow($tableName, $fieldName, $fieldValue) {
             $db = Model::getDB();
-            $stmt = $db->query("SELECT * FROM `$tableName` WHERE '$fieldName' = $fieldValue");
+            $stmt = $db->query("SELECT * FROM `$tableName` WHERE $fieldName = '$fieldValue'");
             $results = $stmt->fetch(PDO::FETCH_ASSOC);
             return $results;
         }
