@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 21, 2020 at 06:16 PM
+-- Generation Time: Feb 22, 2020 at 11:50 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.2.26
 
@@ -47,10 +47,9 @@ CREATE TABLE `serviceregistration` (
 --
 
 INSERT INTO `serviceregistration` (`serviceID`, `userID`, `title`, `vehicleNumber`, `licenseNumber`, `date`, `timeSlot`, `vehicleIssue`, `serviceCenter`, `status`, `createdDate`) VALUES
-(28, 1, '', '7', '7', '0000-00-00', '9-10', '', '', 1, '2020-02-21'),
-(29, 3, 'sjd', '562', '562', '2020-02-06', '9-10', 'shj', 'service1', 1, '2020-02-21'),
-(30, 1, '', '8', '8', '0000-00-00', '9-10', '', '', 0, '2020-02-21'),
-(31, 1, '', '9', '9', '0000-00-00', '9-10', '', '', 0, '2020-02-21');
+(32, 1, 'S1', '1', '1', '2020-02-06', '9-10', 'Issue1', 'service1', 0, '2020-02-22'),
+(33, 1, 'S2', '2', '2', '2020-02-06', '9-10', 'Issue2', 'service1', 0, '2020-02-22'),
+(34, 1, 'S3', '3', '3', '2020-02-06', '9-10', 'Issue3', 'service1', 0, '2020-02-22');
 
 -- --------------------------------------------------------
 
@@ -73,9 +72,7 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`userID`, `firstName`, `lastName`, `email`, `password`, `phoneNumber`) VALUES
 (1, 'Dhara', 'Parekh', 'abc@gmail.com', '123456', '9824588991'),
-(2, '', '', 'def@gmail.com', '', ''),
-(3, 'hsdh', 'jcsjh', 'harmi@gmail.com', '123456', '982458889'),
-(4, '', '', '', '', '');
+(3, 'hsdh', 'jcsjh', 'harmi@gmail.com', '123456', '982458889');
 
 -- --------------------------------------------------------
 
@@ -99,9 +96,7 @@ CREATE TABLE `useraddress` (
 
 INSERT INTO `useraddress` (`addressID`, `userID`, `street`, `city`, `state`, `zipCode`, `country`) VALUES
 (1, 1, 's1', 'Jamnagar', 'Gujarat', 360001, 'India'),
-(2, 2, '', '', '', 0, ''),
-(3, 3, 'dh', 'Jamnagar', 'Gujarat', 360001, 'India'),
-(4, 4, '', '', '', 0, '');
+(3, 3, 'dh', 'Jamnagar', 'Gujarat', 360001, 'India');
 
 --
 -- Indexes for dumped tables
@@ -138,7 +133,7 @@ ALTER TABLE `useraddress`
 -- AUTO_INCREMENT for table `serviceregistration`
 --
 ALTER TABLE `serviceregistration`
-  MODIFY `serviceID` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `serviceID` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT for table `user`
